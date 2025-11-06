@@ -1,0 +1,19 @@
+{
+  "name": "pro_2---chat-para-negocio-openai",
+  "version": "1.0.0",
+  "description": "Assistant for Store",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jesus Bustos Arizmendi",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10",
+    "openai": "^6.8.0"
+  }
+}

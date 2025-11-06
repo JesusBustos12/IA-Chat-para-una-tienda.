@@ -1,0 +1,1940 @@
+{
+    "productos": [
+        {
+            "nombre": "Refresco de Cola Original (600ml)",
+            "marca": "Red Cola",
+            "costo": 16.0,
+            "fecha_de_caducidad": "2026-07-25",
+            "unidades_de_stock": 250,
+            "id": 1
+        },
+        {
+            "nombre": "Refresco de Mandarina (600ml)",
+            "marca": "Jarritos",
+            "costo": 18.5,
+            "fecha_de_caducidad": "2026-06-30",
+            "unidades_de_stock": 180,
+            "id": 2
+        },
+        {
+            "nombre": "Agua Purificada (1 Litro)",
+            "marca": "Bonafont",
+            "costo": 12.0,
+            "fecha_de_caducidad": "2027-12-01",
+            "unidades_de_stock": 350,
+            "id": 3
+        },
+        {
+            "nombre": "Agua Mineral Sabores Toronja",
+            "marca": "Peñafiel",
+            "costo": 19.5,
+            "fecha_de_caducidad": "2026-09-15",
+            "unidades_de_stock": 160,
+            "id": 4
+        },
+        {
+            "nombre": "Jugo de Naranja Natural (1 L)",
+            "marca": "Jumex",
+            "costo": 28.0,
+            "fecha_de_caducidad": "2026-02-28",
+            "unidades_de_stock": 110,
+            "id": 5
+        },
+        {
+            "nombre": "Jugo de Guayaba (200ml)",
+            "marca": "Boing!",
+            "costo": 10.0,
+            "fecha_de_caducidad": "2026-04-10",
+            "unidades_de_stock": 220,
+            "id": 6
+        },
+        {
+            "nombre": "Cerveza Clara Pilsner (Six Pack)",
+            "marca": "Corona Extra",
+            "costo": 125.0,
+            "fecha_de_caducidad": "2026-10-20",
+            "unidades_de_stock": 80,
+            "id": 7
+        },
+        {
+            "nombre": "Cerveza Oscura (Botella 355ml)",
+            "marca": "Negra Modelo",
+            "costo": 25.0,
+            "fecha_de_caducidad": "2027-01-05",
+            "unidades_de_stock": 95,
+            "id": 8
+        },
+        {
+            "nombre": "Bebida de Coco con Piña (1 L)",
+            "marca": "Calahua",
+            "costo": 38.0,
+            "fecha_de_caducidad": "2026-08-12",
+            "unidades_de_stock": 75,
+            "id": 9
+        },
+        {
+            "nombre": "Té Negro Frío Sabor Limón",
+            "marca": "Fuze Tea",
+            "costo": 22.0,
+            "fecha_de_caducidad": "2026-05-01",
+            "unidades_de_stock": 105,
+            "id": 10
+        },
+        {
+            "nombre": "Néctar de Durazno (335ml)",
+            "marca": "Del Valle",
+            "costo": 14.5,
+            "fecha_de_caducidad": "2026-03-15",
+            "unidades_de_stock": 130,
+            "id": 11
+        },
+        {
+            "nombre": "Agua Tónica Premium",
+            "marca": "Schweppes",
+            "costo": 28.0,
+            "fecha_de_caducidad": "2027-04-01",
+            "unidades_de_stock": 50,
+            "id": 12
+        },
+        {
+            "nombre": "Refresco Lima-Limón sin Azúcar",
+            "marca": "Sprite",
+            "costo": 17.5,
+            "fecha_de_caducidad": "2026-07-07",
+            "unidades_de_stock": 140,
+            "id": 13
+        },
+        {
+            "nombre": "Leche Saborizada Chocolate (250ml)",
+            "marca": "Lala",
+            "costo": 11.0,
+            "fecha_de_caducidad": "2026-01-20",
+            "unidades_de_stock": 190,
+            "id": 14
+        },
+        {
+            "nombre": "Bebida Energética Original",
+            "marca": "Monster Energy",
+            "costo": 45.0,
+            "fecha_de_caducidad": "2027-06-01",
+            "unidades_de_stock": 60,
+            "id": 15
+        },
+        {
+            "nombre": "Café Soluble Clásico (100g)",
+            "marca": "Nescafé",
+            "costo": 79.0,
+            "fecha_de_caducidad": "2028-05-10",
+            "unidades_de_stock": 85,
+            "id": 16
+        },
+        {
+            "nombre": "Café Tostado y Molido (250g)",
+            "marca": "Cielito Querido Café",
+            "costo": 95.0,
+            "fecha_de_caducidad": "2026-09-01",
+            "unidades_de_stock": 40,
+            "id": 17
+        },
+        {
+            "nombre": "Atole de Vainilla en Polvo",
+            "marca": "Maizena",
+            "costo": 12.0,
+            "fecha_de_caducidad": "2027-03-01",
+            "unidades_de_stock": 100,
+            "id": 18
+        },
+        {
+            "nombre": "Concentrado de Horchata (1L)",
+            "marca": "Chata",
+            "costo": 45.0,
+            "fecha_de_caducidad": "2026-08-01",
+            "unidades_de_stock": 55,
+            "id": 19
+        },
+        {
+            "nombre": "Agua de Coco Natural (330ml)",
+            "marca": "Vita Coco",
+            "costo": 35.0,
+            "fecha_de_caducidad": "2026-11-20",
+            "unidades_de_stock": 70,
+            "id": 20
+        },
+        {
+            "nombre": "Refresco de Tamarindo (2 L)",
+            "marca": "Jolly",
+            "costo": 26.0,
+            "fecha_de_caducidad": "2026-06-01",
+            "unidades_de_stock": 90,
+            "id": 21
+        },
+        {
+            "nombre": "Jugo de Tomate con Almeja",
+            "marca": "Clamato",
+            "costo": 33.0,
+            "fecha_de_caducidad": "2026-12-01",
+            "unidades_de_stock": 45,
+            "id": 22
+        },
+        {
+            "nombre": "Bebida de Soya Natural (1 L)",
+            "marca": "Ades",
+            "costo": 30.0,
+            "fecha_de_caducidad": "2026-05-05",
+            "unidades_de_stock": 85,
+            "id": 23
+        },
+        {
+            "nombre": "Jugo de Piña en Lata (250ml)",
+            "marca": "Herdez",
+            "costo": 15.0,
+            "fecha_de_caducidad": "2027-01-01",
+            "unidades_de_stock": 120,
+            "id": 24
+        },
+        {
+            "nombre": "Refresco Sabor Manzana",
+            "marca": "Manzanita Sol",
+            "costo": 18.0,
+            "fecha_de_caducidad": "2026-04-01",
+            "unidades_de_stock": 170,
+            "id": 25
+        },
+        {
+            "nombre": "Agua con gas Natural (600ml)",
+            "marca": "Topo Chico",
+            "costo": 20.0,
+            "fecha_de_caducidad": "2027-05-01",
+            "unidades_de_stock": 155,
+            "id": 26
+        },
+        {
+            "nombre": "Cerveza Ultra Light (Six Pack)",
+            "marca": "Michelob Ultra",
+            "costo": 140.0,
+            "fecha_de_caducidad": "2026-09-01",
+            "unidades_de_stock": 50,
+            "id": 27
+        },
+        {
+            "nombre": "Bebida Isotónica Sabor Uva",
+            "marca": "Gatorade",
+            "costo": 30.0,
+            "fecha_de_caducidad": "2027-02-15",
+            "unidades_de_stock": 115,
+            "id": 28
+        },
+        {
+            "nombre": "Leche de Avena Barista (1L)",
+            "marca": "Oatly",
+            "costo": 55.0,
+            "fecha_de_caducidad": "2026-03-01",
+            "unidades_de_stock": 30,
+            "id": 29
+        },
+        {
+            "nombre": "Concentrado de Jamaica (500ml)",
+            "marca": "Productos de la Sierra",
+            "costo": 39.0,
+            "fecha_de_caducidad": "2026-10-10",
+            "unidades_de_stock": 65,
+            "id": 30
+        },
+        {
+            "nombre": "Refresco de Uva (600ml)",
+            "marca": "Fanta",
+            "costo": 17.5,
+            "fecha_de_caducidad": "2026-07-15",
+            "unidades_de_stock": 125,
+            "id": 31
+        },
+        {
+            "nombre": "Néctar de Mango Light (1 L)",
+            "marca": "Del Monte",
+            "costo": 27.0,
+            "fecha_de_caducidad": "2026-04-20",
+            "unidades_de_stock": 80,
+            "id": 32
+        },
+        {
+            "nombre": "Cerveza Artesanal IPA (355ml)",
+            "marca": "Cervecería Primus",
+            "costo": 65.0,
+            "fecha_de_caducidad": "2026-05-01",
+            "unidades_de_stock": 25,
+            "id": 33
+        },
+        {
+            "nombre": "Agua de sabor Pepino-Limón",
+            "marca": "Ciel",
+            "costo": 15.0,
+            "fecha_de_caducidad": "2027-08-01",
+            "unidades_de_stock": 200,
+            "id": 34
+        },
+        {
+            "nombre": "Chocolate en Polvo para Leche (350g)",
+            "marca": "Choco Milk",
+            "costo": 49.0,
+            "fecha_de_caducidad": "2027-09-01",
+            "unidades_de_stock": 75,
+            "id": 35
+        },
+        {
+            "nombre": "Leche Deslactosada Light (1 L)",
+            "marca": "Alpura",
+            "costo": 26.5,
+            "fecha_de_caducidad": "2026-07-20",
+            "unidades_de_stock": 150,
+            "id": 36
+        },
+        {
+            "nombre": "Yogurt Griego Natural",
+            "marca": "Lala",
+            "costo": 35.0,
+            "fecha_de_caducidad": "2026-02-05",
+            "unidades_de_stock": 80,
+            "id": 37
+        },
+        {
+            "nombre": "Queso Panela Light Rebanado",
+            "marca": "Fud",
+            "costo": 55.0,
+            "fecha_de_caducidad": "2026-01-20",
+            "unidades_de_stock": 70,
+            "id": 38
+        },
+        {
+            "nombre": "Crema Ácida (450ml)",
+            "marca": "Sello Rojo",
+            "costo": 32.0,
+            "fecha_de_caducidad": "2026-01-15",
+            "unidades_de_stock": 95,
+            "id": 39
+        },
+        {
+            "nombre": "Mantequilla con Sal (90g)",
+            "marca": "Gloria",
+            "costo": 19.9,
+            "fecha_de_caducidad": "2026-04-01",
+            "unidades_de_stock": 110,
+            "id": 40
+        },
+        {
+            "nombre": "Queso Manchego Entero (500g)",
+            "marca": "Nochebuena",
+            "costo": 120.0,
+            "fecha_de_caducidad": "2026-03-01",
+            "unidades_de_stock": 45,
+            "id": 41
+        },
+        {
+            "nombre": "Yogurt Bebible Fresa (1 L)",
+            "marca": "Danone",
+            "costo": 29.0,
+            "fecha_de_caducidad": "2026-02-18",
+            "unidades_de_stock": 100,
+            "id": 42
+        },
+        {
+            "nombre": "Queso Amarillo Tipo Americano",
+            "marca": "Kraft",
+            "costo": 45.0,
+            "fecha_de_caducidad": "2026-08-01",
+            "unidades_de_stock": 65,
+            "id": 43
+        },
+        {
+            "nombre": "Leche Evaporada (360g)",
+            "marca": "Carnation Clavel",
+            "costo": 24.0,
+            "fecha_de_caducidad": "2027-10-01",
+            "unidades_de_stock": 130,
+            "id": 44
+        },
+        {
+            "nombre": "Requesón Fresco (200g)",
+            "marca": "Productos Artesanales",
+            "costo": 38.0,
+            "fecha_de_caducidad": "2026-01-11",
+            "unidades_de_stock": 50,
+            "id": 45
+        },
+        {
+            "nombre": "Leche Entera en Polvo (1 Kg)",
+            "marca": "Nido",
+            "costo": 180.0,
+            "fecha_de_caducidad": "2027-05-01",
+            "unidades_de_stock": 40,
+            "id": 46
+        },
+        {
+            "nombre": "Yogurt de Búlgaros Natural",
+            "marca": "Activia",
+            "costo": 21.0,
+            "fecha_de_caducidad": "2026-01-22",
+            "unidades_de_stock": 75,
+            "id": 47
+        },
+        {
+            "nombre": "Queso Cotija Rallado",
+            "marca": "La Villita",
+            "costo": 49.0,
+            "fecha_de_caducidad": "2026-03-05",
+            "unidades_de_stock": 60,
+            "id": 48
+        },
+        {
+            "nombre": "Media Crema",
+            "marca": "Nestlé",
+            "costo": 18.0,
+            "fecha_de_caducidad": "2027-04-01",
+            "unidades_de_stock": 120,
+            "id": 49
+        },
+        {
+            "nombre": "Jocoque Seco (250g)",
+            "marca": "Productos de Rancho",
+            "costo": 42.0,
+            "fecha_de_caducidad": "2026-01-16",
+            "unidades_de_stock": 35,
+            "id": 50
+        },
+        {
+            "nombre": "Queso Chihuahua Semi-Maduro",
+            "marca": "Menonita Primavera",
+            "costo": 135.0,
+            "fecha_de_caducidad": "2026-02-25",
+            "unidades_de_stock": 30,
+            "id": 51
+        },
+        {
+            "nombre": "Leche Orgánica Entera (1 L)",
+            "marca": "Santa Clara",
+            "costo": 38.0,
+            "fecha_de_caducidad": "2026-06-01",
+            "unidades_de_stock": 55,
+            "id": 52
+        },
+        {
+            "nombre": "Crema Batida en Aerosol",
+            "marca": "Reddi-Wip",
+            "costo": 60.0,
+            "fecha_de_caducidad": "2026-11-01",
+            "unidades_de_stock": 40,
+            "id": 53
+        },
+        {
+            "nombre": "Postre de Gelatina Sabores Surtidos",
+            "marca": "D'Gari",
+            "costo": 8.0,
+            "fecha_de_caducidad": "2026-01-21",
+            "unidades_de_stock": 180,
+            "id": 54
+        },
+        {
+            "nombre": "Margarina con Aceite de Oliva",
+            "marca": "Primavera",
+            "costo": 27.0,
+            "fecha_de_caducidad": "2026-09-01",
+            "unidades_de_stock": 90,
+            "id": 55
+        },
+        {
+            "nombre": "Yogurt con Fruta Picada (Piña)",
+            "marca": "Yoplait",
+            "costo": 19.0,
+            "fecha_de_caducidad": "2026-01-19",
+            "unidades_de_stock": 105,
+            "id": 56
+        },
+        {
+            "nombre": "Queso de Cabra Fresco (200g)",
+            "marca": "Lacteos San Miguel",
+            "costo": 75.0,
+            "fecha_de_caducidad": "2026-01-13",
+            "unidades_de_stock": 25,
+            "id": 57
+        },
+        {
+            "nombre": "Leche Deslactosada sabor Vainilla",
+            "marca": "Nutri Leche",
+            "costo": 22.0,
+            "fecha_de_caducidad": "2026-05-01",
+            "unidades_de_stock": 140,
+            "id": 58
+        },
+        {
+            "nombre": "Queso Parmesano Rallado",
+            "marca": "Esmeralda",
+            "costo": 59.0,
+            "fecha_de_caducidad": "2026-10-01",
+            "unidades_de_stock": 50,
+            "id": 59
+        },
+        {
+            "nombre": "Yogurt Probiótico Sin Azúcar",
+            "marca": "Yakult",
+            "costo": 40.0,
+            "fecha_de_caducidad": "2026-01-23",
+            "unidades_de_stock": 115,
+            "id": 60
+        },
+        {
+            "nombre": "Crema para Café Líquida",
+            "marca": "Coffee Mate",
+            "costo": 38.0,
+            "fecha_de_caducidad": "2026-09-01",
+            "unidades_de_stock": 60,
+            "id": 61
+        },
+        {
+            "nombre": "Queso Doble Crema",
+            "marca": "Los Volcanes",
+            "costo": 95.0,
+            "fecha_de_caducidad": "2026-01-14",
+            "unidades_de_stock": 35,
+            "id": 62
+        },
+        {
+            "nombre": "Leche de Almendra Vainilla",
+            "marca": "Silk",
+            "costo": 49.0,
+            "fecha_de_caducidad": "2026-04-01",
+            "unidades_de_stock": 70,
+            "id": 63
+        },
+        {
+            "nombre": "Queso Crema Tipo Filadelfia (190g)",
+            "marca": "Philadelphia",
+            "costo": 45.0,
+            "fecha_de_caducidad": "2026-02-10",
+            "unidades_de_stock": 85,
+            "id": 64
+        },
+        {
+            "nombre": "Mantequilla Clarificada Ghee",
+            "marca": "Ayurveda",
+            "costo": 85.0,
+            "fecha_de_caducidad": "2027-01-01",
+            "unidades_de_stock": 20,
+            "id": 65
+        },
+        {
+            "nombre": "Yogurt Probiótico Bebible Ciruela",
+            "marca": "Lala 100",
+            "costo": 18.0,
+            "fecha_de_caducidad": "2026-01-25",
+            "unidades_de_stock": 100,
+            "id": 66
+        },
+        {
+            "nombre": "Queso Añejo Rallado",
+            "marca": "Real del Castillo",
+            "costo": 65.0,
+            "fecha_de_caducidad": "2026-03-20",
+            "unidades_de_stock": 45,
+            "id": 67
+        },
+        {
+            "nombre": "Leche Semidescremada (1 L)",
+            "marca": "Borden",
+            "costo": 24.5,
+            "fecha_de_caducidad": "2026-08-01",
+            "unidades_de_stock": 130,
+            "id": 68
+        },
+        {
+            "nombre": "Flan Napolitano en Lata",
+            "marca": "Coronado",
+            "costo": 15.0,
+            "fecha_de_caducidad": "2027-02-01",
+            "unidades_de_stock": 90,
+            "id": 69
+        },
+        {
+            "nombre": "Crema de Leche para Postres",
+            "marca": "Lyncott",
+            "costo": 40.0,
+            "fecha_de_caducidad": "2026-02-01",
+            "unidades_de_stock": 55,
+            "id": 70
+        },
+        {
+            "nombre": "Queso Fresco Ranchero (400g)",
+            "marca": "Chipilo",
+            "costo": 70.0,
+            "fecha_de_caducidad": "2026-01-12",
+            "unidades_de_stock": 40,
+            "id": 71
+        },
+        {
+            "nombre": "Queso Edam Rebanado",
+            "marca": "President",
+            "costo": 50.0,
+            "fecha_de_caducidad": "2026-03-15",
+            "unidades_de_stock": 65,
+            "id": 72
+        },
+        {
+            "nombre": "Leche Light de Coco (1 L)",
+            "marca": "Apurísima",
+            "costo": 42.0,
+            "fecha_de_caducidad": "2026-07-01",
+            "unidades_de_stock": 50,
+            "id": 73
+        },
+        {
+            "nombre": "Queso Asadero Fresco (200g)",
+            "marca": "Flor de Alfalfa",
+            "costo": 48.0,
+            "fecha_de_caducidad": "2026-01-17",
+            "unidades_de_stock": 75,
+            "id": 74
+        },
+        {
+            "nombre": "Yogurt Bebible Cereal y Miel",
+            "marca": "Danup",
+            "costo": 16.5,
+            "fecha_de_caducidad": "2026-02-08",
+            "unidades_de_stock": 120,
+            "id": 75
+        },
+        {
+            "nombre": "Plátano Tabasco (Kg)",
+            "marca": "Productores de Chiapas",
+            "costo": 16.0,
+            "fecha_de_caducidad": "2026-01-12",
+            "unidades_de_stock": 180,
+            "id": 76
+        },
+        {
+            "nombre": "Limón Persa (Kg)",
+            "marca": "Productores de Veracruz",
+            "costo": 25.0,
+            "fecha_de_caducidad": "2026-01-15",
+            "unidades_de_stock": 210,
+            "id": 77
+        },
+        {
+            "nombre": "Papa Blanca (Kg)",
+            "marca": "Del Campo",
+            "costo": 30.0,
+            "fecha_de_caducidad": "2026-01-25",
+            "unidades_de_stock": 150,
+            "id": 78
+        },
+        {
+            "nombre": "Cebolla Blanca (Kg)",
+            "marca": "Hortalizas de Bajío",
+            "costo": 20.0,
+            "fecha_de_caducidad": "2026-01-30",
+            "unidades_de_stock": 170,
+            "id": 79
+        },
+        {
+            "nombre": "Zanahoria (Kg)",
+            "marca": "La Huerta",
+            "costo": 15.0,
+            "fecha_de_caducidad": "2026-01-20",
+            "unidades_de_stock": 190,
+            "id": 80
+        },
+        {
+            "nombre": "Manzana Red Delicious (Kg)",
+            "marca": "El Granero",
+            "costo": 48.0,
+            "fecha_de_caducidad": "2026-02-01",
+            "unidades_de_stock": 100,
+            "id": 81
+        },
+        {
+            "nombre": "Nopal Limpio (Paquete 500g)",
+            "marca": "Nopales de Milpa Alta",
+            "costo": 18.0,
+            "fecha_de_caducidad": "2026-01-13",
+            "unidades_de_stock": 120,
+            "id": 82
+        },
+        {
+            "nombre": "Brócoli (Pieza)",
+            "marca": "Fresh Seasons",
+            "costo": 22.0,
+            "fecha_de_caducidad": "2026-01-11",
+            "unidades_de_stock": 85,
+            "id": 83
+        },
+        {
+            "nombre": "Chile Serrano (Kg)",
+            "marca": "Del Río",
+            "costo": 35.0,
+            "fecha_de_caducidad": "2026-01-14",
+            "unidades_de_stock": 90,
+            "id": 84
+        },
+        {
+            "nombre": "Fresa Fresca (Caja 450g)",
+            "marca": "Grupo Freza",
+            "costo": 60.0,
+            "fecha_de_caducidad": "2026-01-10",
+            "unidades_de_stock": 70,
+            "id": 85
+        },
+        {
+            "nombre": "Uva Roja sin Semilla (Kg)",
+            "marca": "Vinos y Frutas de Aguascalientes",
+            "costo": 80.0,
+            "fecha_de_caducidad": "2026-01-15",
+            "unidades_de_stock": 60,
+            "id": 86
+        },
+        {
+            "nombre": "Lechuga Romana (Pieza)",
+            "marca": "Hortalizas El Sol",
+            "costo": 15.0,
+            "fecha_de_caducidad": "2026-01-11",
+            "unidades_de_stock": 130,
+            "id": 87
+        },
+        {
+            "nombre": "Pepino (Kg)",
+            "marca": "Del Campo",
+            "costo": 20.0,
+            "fecha_de_caducidad": "2026-01-14",
+            "unidades_de_stock": 140,
+            "id": 88
+        },
+        {
+            "nombre": "Melón Cantaloupe (Pieza)",
+            "marca": "Frutas del Desierto",
+            "costo": 38.0,
+            "fecha_de_caducidad": "2026-01-16",
+            "unidades_de_stock": 55,
+            "id": 89
+        },
+        {
+            "nombre": "Calabacita Italiana (Kg)",
+            "marca": "Productores de Morelos",
+            "costo": 25.0,
+            "fecha_de_caducidad": "2026-01-13",
+            "unidades_de_stock": 110,
+            "id": 90
+        },
+        {
+            "nombre": "Pera Bosc (Kg)",
+            "marca": "Chile (Importado)",
+            "costo": 55.0,
+            "fecha_de_caducidad": "2026-01-28",
+            "unidades_de_stock": 75,
+            "id": 91
+        },
+        {
+            "nombre": "Ajo Blanco (Cabeza)",
+            "marca": "Productores de Zacatecas",
+            "costo": 8.0,
+            "fecha_de_caducidad": "2026-03-01",
+            "unidades_de_stock": 250,
+            "id": 92
+        },
+        {
+            "nombre": "Champiñones Rebanados (200g)",
+            "marca": "Setas Frescas",
+            "costo": 35.0,
+            "fecha_de_caducidad": "2026-01-09",
+            "unidades_de_stock": 95,
+            "id": 93
+        },
+        {
+            "nombre": "Mango Manila (Kg)",
+            "marca": "Prime Fruit México",
+            "costo": 40.0,
+            "fecha_de_caducidad": "2026-01-17",
+            "unidades_de_stock": 80,
+            "id": 94
+        },
+        {
+            "nombre": "Espinaca (Manos 200g)",
+            "marca": "Campo Vivo (Orgánico)",
+            "costo": 28.0,
+            "fecha_de_caducidad": "2026-01-10",
+            "unidades_de_stock": 105,
+            "id": 95
+        },
+        {
+            "nombre": "Jícama (Kg)",
+            "marca": "Del Campo",
+            "costo": 18.0,
+            "fecha_de_caducidad": "2026-01-22",
+            "unidades_de_stock": 125,
+            "id": 96
+        },
+        {
+            "nombre": "Apio (Manos)",
+            "marca": "Hortalizas El Sol",
+            "costo": 17.0,
+            "fecha_de_caducidad": "2026-01-15",
+            "unidades_de_stock": 135,
+            "id": 97
+        },
+        {
+            "nombre": "Coliflor (Pieza)",
+            "marca": "Del Campo",
+            "costo": 35.0,
+            "fecha_de_caducidad": "2026-01-12",
+            "unidades_de_stock": 65,
+            "id": 98
+        },
+        {
+            "nombre": "Betabel (Kg)",
+            "marca": "Hortalizas de Bajío",
+            "costo": 19.0,
+            "fecha_de_caducidad": "2026-01-20",
+            "unidades_de_stock": 115,
+            "id": 99
+        },
+        {
+            "nombre": "Toronja (Kg)",
+            "marca": "Cítricos de Veracruz",
+            "costo": 22.0,
+            "fecha_de_caducidad": "2026-01-25",
+            "unidades_de_stock": 90,
+            "id": 100
+        },
+        {
+            "nombre": "Tomate Verde (Kg)",
+            "marca": "Del Campo",
+            "costo": 28.0,
+            "fecha_de_caducidad": "2026-01-14",
+            "unidades_de_stock": 100,
+            "id": 101
+        },
+        {
+            "nombre": "Aguacate en Trozos Congelados (300g)",
+            "marca": "La Huerta",
+            "costo": 55.0,
+            "fecha_de_caducidad": "2027-10-01",
+            "unidades_de_stock": 40,
+            "id": 102
+        },
+        {
+            "nombre": "Frambuesa Fresca (Caja 170g)",
+            "marca": "Berries de Jalisco",
+            "costo": 75.0,
+            "fecha_de_caducidad": "2026-01-08",
+            "unidades_de_stock": 50,
+            "id": 103
+        },
+        {
+            "nombre": "Zarzamora Congelada (500g)",
+            "marca": "Grupo Freza",
+            "costo": 85.0,
+            "fecha_de_caducidad": "2027-11-01",
+            "unidades_de_stock": 35,
+            "id": 104
+        },
+        {
+            "nombre": "Pera Williams (Kg)",
+            "marca": "Argentina (Importado)",
+            "costo": 40.0,
+            "fecha_de_caducidad": "2026-01-24",
+            "unidades_de_stock": 80,
+            "id": 105
+        },
+        {
+            "nombre": "Puerro (Manos)",
+            "marca": "Hortalizas El Sol",
+            "costo": 25.0,
+            "fecha_de_caducidad": "2026-01-13",
+            "unidades_de_stock": 70,
+            "id": 106
+        },
+        {
+            "nombre": "Papas de Gajos Congeladas (1Kg)",
+            "marca": "McCain",
+            "costo": 70.0,
+            "fecha_de_caducidad": "2027-04-01",
+            "unidades_de_stock": 60,
+            "id": 107
+        },
+        {
+            "nombre": "Acelga (Manos)",
+            "marca": "Productores de Morelos",
+            "costo": 14.0,
+            "fecha_de_caducidad": "2026-01-11",
+            "unidades_de_stock": 150,
+            "id": 108
+        },
+        {
+            "nombre": "Perejil (Manos)",
+            "marca": "Del Campo",
+            "costo": 10.0,
+            "fecha_de_caducidad": "2026-01-10",
+            "unidades_de_stock": 200,
+            "id": 109
+        },
+        {
+            "nombre": "Haba Verde Congelada (400g)",
+            "marca": "La Huerta",
+            "costo": 35.0,
+            "fecha_de_caducidad": "2027-05-01",
+            "unidades_de_stock": 45,
+            "id": 110
+        },
+        {
+            "nombre": "Gajos de Mandarina en Almíbar (Lata)",
+            "marca": "Clemente Jacques",
+            "costo": 30.0,
+            "fecha_de_caducidad": "2028-01-01",
+            "unidades_de_stock": 85,
+            "id": 111
+        },
+        {
+            "nombre": "Durazno Fresco (Kg)",
+            "marca": "Productores de Chihuahua",
+            "costo": 65.0,
+            "fecha_de_caducidad": "2026-01-19",
+            "unidades_de_stock": 50,
+            "id": 112
+        },
+        {
+            "nombre": "Pimiento Amarillo (Kg)",
+            "marca": "El Semillero",
+            "costo": 60.0,
+            "fecha_de_caducidad": "2026-01-12",
+            "unidades_de_stock": 40,
+            "id": 113
+        },
+        {
+            "nombre": "Col Rizada (Manos)",
+            "marca": "Campo Vivo (Orgánico)",
+            "costo": 30.0,
+            "fecha_de_caducidad": "2026-01-11",
+            "unidades_de_stock": 75,
+            "id": 114
+        },
+        {
+            "nombre": "Kiwi Verde (Kg)",
+            "marca": "Nueva Zelanda (Importado)",
+            "costo": 90.0,
+            "fecha_de_caducidad": "2026-01-26",
+            "unidades_de_stock": 30,
+            "id": 115
+        },
+        {
+            "nombre": "Cilantro (Manos)",
+            "marca": "Del Campo",
+            "costo": 8.0,
+            "fecha_de_caducidad": "2026-01-09",
+            "unidades_de_stock": 220,
+            "id": 116
+        },
+        {
+            "nombre": "Camote Blanco (Kg)",
+            "marca": "Hortalizas de Bajío",
+            "costo": 25.0,
+            "fecha_de_caducidad": "2026-02-15",
+            "unidades_de_stock": 105,
+            "id": 117
+        },
+        {
+            "nombre": "Elote Desgranado Congelado (500g)",
+            "marca": "La Huerta",
+            "costo": 39.0,
+            "fecha_de_caducidad": "2027-12-01",
+            "unidades_de_stock": 60,
+            "id": 118
+        },
+        {
+            "nombre": "Aguacate Hass (Malla 4 piezas)",
+            "marca": "Productores Michoacanos",
+            "costo": 48.0,
+            "fecha_de_caducidad": "2026-01-13",
+            "unidades_de_stock": 90,
+            "id": 119
+        },
+        {
+            "nombre": "Espárragos Frescos (Manos)",
+            "marca": "Del Campo",
+            "costo": 70.0,
+            "fecha_de_caducidad": "2026-01-10",
+            "unidades_de_stock": 35,
+            "id": 120
+        },
+        {
+            "nombre": "Piña Miel (Pieza)",
+            "marca": "Productores de Jalisco",
+            "costo": 35.0,
+            "fecha_de_caducidad": "2026-01-18",
+            "unidades_de_stock": 75,
+            "id": 121
+        },
+        {
+            "nombre": "Chayote sin Espinas (Kg)",
+            "marca": "Productores de Morelos",
+            "costo": 15.0,
+            "fecha_de_caducidad": "2026-01-16",
+            "unidades_de_stock": 130,
+            "id": 122
+        },
+        {
+            "nombre": "Vainas de Ejote (Kg)",
+            "marca": "Del Campo",
+            "costo": 28.0,
+            "fecha_de_caducidad": "2026-01-14",
+            "unidades_de_stock": 80,
+            "id": 123
+        },
+        {
+            "nombre": "Cerezas Frescas (Caja 200g)",
+            "marca": "Estados Unidos (Importado)",
+            "costo": 120.0,
+            "fecha_de_caducidad": "2026-01-07",
+            "unidades_de_stock": 25,
+            "id": 124
+        },
+        {
+            "nombre": "Maíz para Pozole Precocido (Bolsa)",
+            "marca": "Carey",
+            "costo": 32.0,
+            "fecha_de_caducidad": "2027-05-01",
+            "unidades_de_stock": 70,
+            "id": 125
+        },
+        {
+            "nombre": "Arándanos Azules Frescos (Caja 170g)",
+            "marca": "Berries de Jalisco",
+            "costo": 55.0,
+            "fecha_de_caducidad": "2026-01-10",
+            "unidades_de_stock": 60,
+            "id": 126
+        },
+        {
+            "nombre": "Zanahoria Baby Congelada (400g)",
+            "marca": "La Huerta",
+            "costo": 28.0,
+            "fecha_de_caducidad": "2027-10-01",
+            "unidades_de_stock": 50,
+            "id": 127
+        },
+        {
+            "nombre": "Detergente en Polvo para Ropa (1 Kg)",
+            "marca": "Foca",
+            "costo": 35.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 110,
+            "id": 128
+        },
+        {
+            "nombre": "Limpiador Desinfectante Lavanda (2 L)",
+            "marca": "Fabuloso",
+            "costo": 45.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 130,
+            "id": 129
+        },
+        {
+            "nombre": "Cloro Blanqueador Concentrado (1 L)",
+            "marca": "Cloralex",
+            "costo": 20.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 150,
+            "id": 130
+        },
+        {
+            "nombre": "Suavizante de Telas Aroma Floral (800ml)",
+            "marca": "Downy",
+            "costo": 42.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 90,
+            "id": 131
+        },
+        {
+            "nombre": "Jabón Líquido para Trastes Limón",
+            "marca": "Salvo",
+            "costo": 28.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 120,
+            "id": 132
+        },
+        {
+            "nombre": "Limpiador para Vidrios y Cristales",
+            "marca": "Windex",
+            "costo": 35.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 70,
+            "id": 133
+        },
+        {
+            "nombre": "Desinfectante de Superficies en Aerosol",
+            "marca": "Lysol",
+            "costo": 70.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 50,
+            "id": 134
+        },
+        {
+            "nombre": "Toallitas Húmedas Desinfectantes",
+            "marca": "Clorox",
+            "costo": 55.0,
+            "fecha_de_caducidad": "2027-03-01",
+            "unidades_de_stock": 65,
+            "id": 135
+        },
+        {
+            "nombre": "Detergente Líquido Hipoalergénico",
+            "marca": "Persil",
+            "costo": 85.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 45,
+            "id": 136
+        },
+        {
+            "nombre": "Limpiador de Baños Anti-sarro",
+            "marca": "HarPic",
+            "costo": 38.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 80,
+            "id": 137
+        },
+        {
+            "nombre": "Ambientador en Aerosol Vainilla",
+            "marca": "Glade",
+            "costo": 30.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 100,
+            "id": 138
+        },
+        {
+            "nombre": "Papel de Baño Acolchonado (12 Rollos)",
+            "marca": "Kleenex Cottonelle",
+            "costo": 95.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 75,
+            "id": 139
+        },
+        {
+            "nombre": "Bolsas de Basura con Jareta (Grandes)",
+            "marca": "Reyner",
+            "costo": 40.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 115,
+            "id": 140
+        },
+        {
+            "nombre": "Lavatrastes en Pasta (200g)",
+            "marca": "Axion",
+            "costo": 15.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 180,
+            "id": 141
+        },
+        {
+            "nombre": "Limpiador para Madera y Muebles",
+            "marca": "Pledge",
+            "costo": 50.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 60,
+            "id": 142
+        },
+        {
+            "nombre": "Desengrasante de Cocina",
+            "marca": "Maestro Limpio",
+            "costo": 39.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 85,
+            "id": 143
+        },
+        {
+            "nombre": "Fibra Verde para Limpieza Pesada",
+            "marca": "Scotch-Brite",
+            "costo": 12.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 200,
+            "id": 144
+        },
+        {
+            "nombre": "Pastillas para Inodoro Limpiadoras",
+            "marca": "Bloo",
+            "costo": 25.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 95,
+            "id": 145
+        },
+        {
+            "nombre": "Trapeador de Algodón con Bastón",
+            "marca": "Vileda",
+            "costo": 75.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 40,
+            "id": 146
+        },
+        {
+            "nombre": "Detergente Líquido Ropa Delicada",
+            "marca": "Woolite",
+            "costo": 65.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 50,
+            "id": 147
+        },
+        {
+            "nombre": "Limpiador Biodegradable Multiusos",
+            "marca": "Biocleanse",
+            "costo": 55.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 70,
+            "id": 148
+        },
+        {
+            "nombre": "Limpiador de Alfombras en Espuma",
+            "marca": "Resolve",
+            "costo": 80.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 30,
+            "id": 149
+        },
+        {
+            "nombre": "Removedor de Manchas para Ropa",
+            "marca": "Vanish",
+            "costo": 59.0,
+            "fecha_de_caducidad": "2027-11-01",
+            "unidades_de_stock": 60,
+            "id": 150
+        },
+        {
+            "nombre": "Jabón de Ropa en Barra (Blanco)",
+            "marca": "Blanco Nieves",
+            "costo": 10.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 210,
+            "id": 151
+        },
+        {
+            "nombre": "Guantes de Látex para Limpieza",
+            "marca": "Spontex",
+            "costo": 28.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 105,
+            "id": 152
+        },
+        {
+            "nombre": "Desinfectante para Frutas y Verduras",
+            "marca": "Microdyn",
+            "costo": 32.0,
+            "fecha_de_caducidad": "2028-01-01",
+            "unidades_de_stock": 140,
+            "id": 153
+        },
+        {
+            "nombre": "Pastillas para Lavadora de Trastes",
+            "marca": "Finish Powerball",
+            "costo": 120.0,
+            "fecha_de_caducidad": "2027-09-01",
+            "unidades_de_stock": 35,
+            "id": 154
+        },
+        {
+            "nombre": "Limpiador de Pisos de Madera",
+            "marca": "Pino",
+            "costo": 45.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 75,
+            "id": 155
+        },
+        {
+            "nombre": "Esponjas Multiusos (Paquete de 3)",
+            "marca": "Scotch-Brite",
+            "costo": 25.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 160,
+            "id": 156
+        },
+        {
+            "nombre": "Jabón en Pasta para Manos Industrial",
+            "marca": "Mora",
+            "costo": 50.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 40,
+            "id": 157
+        },
+        {
+            "nombre": "Desodorante Ambiental Automático",
+            "marca": "Air Wick",
+            "costo": 110.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 30,
+            "id": 158
+        },
+        {
+            "nombre": "Toallas de Papel de Cocina (Rollo)",
+            "marca": "Viva",
+            "costo": 35.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 100,
+            "id": 159
+        },
+        {
+            "nombre": "Limpiador de Hornos y Parrillas",
+            "marca": "Easy-Off",
+            "costo": 68.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 45,
+            "id": 160
+        },
+        {
+            "nombre": "Jabón de Lavandería Fino",
+            "marca": "Rinso",
+            "costo": 30.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 90,
+            "id": 161
+        },
+        {
+            "nombre": "Limpiador Desinfectante Pino",
+            "marca": "Pinesol",
+            "costo": 38.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 110,
+            "id": 162
+        },
+        {
+            "nombre": "Abrillantador de Pisos",
+            "marca": "Flash",
+            "costo": 55.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 60,
+            "id": 163
+        },
+        {
+            "nombre": "Plumero Atrapapolvo Desechable",
+            "marca": "Swiffer",
+            "costo": 45.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 70,
+            "id": 164
+        },
+        {
+            "nombre": "Cepillo de Cerdas para Baño",
+            "marca": "Productos de Plástico",
+            "costo": 25.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 80,
+            "id": 165
+        },
+        {
+            "nombre": "Tabletas de Cloro para Cisterna",
+            "marca": "Clorox",
+            "costo": 30.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 95,
+            "id": 166
+        },
+        {
+            "nombre": "Detergente de Lavadora HE",
+            "marca": "Tide",
+            "costo": 150.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 25,
+            "id": 167
+        },
+        {
+            "nombre": "Jabón de Tocador Avena y Miel (3 Barras)",
+            "marca": "Grisi",
+            "costo": 40.0,
+            "fecha_de_caducidad": "2028-04-01",
+            "unidades_de_stock": 150,
+            "id": 168
+        },
+        {
+            "nombre": "Shampoo 2 en 1 Clásico",
+            "marca": "Caprice",
+            "costo": 35.0,
+            "fecha_de_caducidad": "2027-10-01",
+            "unidades_de_stock": 120,
+            "id": 169
+        },
+        {
+            "nombre": "Acondicionador para Cabello Seco",
+            "marca": "Herbal Essences",
+            "costo": 48.0,
+            "fecha_de_caducidad": "2027-05-01",
+            "unidades_de_stock": 90,
+            "id": 170
+        },
+        {
+            "nombre": "Desodorante Antitranspirante Roll-On",
+            "marca": "Nivea",
+            "costo": 32.0,
+            "fecha_de_caducidad": "2028-01-01",
+            "unidades_de_stock": 110,
+            "id": 171
+        },
+        {
+            "nombre": "Pasta Dental Cuidado Total",
+            "marca": "Sensodyne",
+            "costo": 65.0,
+            "fecha_de_caducidad": "2027-08-01",
+            "unidades_de_stock": 70,
+            "id": 172
+        },
+        {
+            "nombre": "Cepillo Dental de Cerdas Medias",
+            "marca": "Oral-B",
+            "costo": 20.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 180,
+            "id": 173
+        },
+        {
+            "nombre": "Enjuague Bucal Menta Fresca",
+            "marca": "Listerine",
+            "costo": 55.0,
+            "fecha_de_caducidad": "2027-06-01",
+            "unidades_de_stock": 80,
+            "id": 174
+        },
+        {
+            "nombre": "Crema Corporal Humectante Piel Seca",
+            "marca": "Lubriderm",
+            "costo": 70.0,
+            "fecha_de_caducidad": "2028-03-01",
+            "unidades_de_stock": 60,
+            "id": 175
+        },
+        {
+            "nombre": "Rastrillo Desechable Doble Hoja (5 piezas)",
+            "marca": "Gillette",
+            "costo": 45.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 100,
+            "id": 176
+        },
+        {
+            "nombre": "Espuma para Afeitar Piel Sensible",
+            "marca": "Old Spice",
+            "costo": 40.0,
+            "fecha_de_caducidad": "2027-09-01",
+            "unidades_de_stock": 75,
+            "id": 177
+        },
+        {
+            "nombre": "Toallas Sanitarias con Alas (10 piezas)",
+            "marca": "Saba",
+            "costo": 35.0,
+            "fecha_de_caducidad": "2028-05-01",
+            "unidades_de_stock": 130,
+            "id": 178
+        },
+        {
+            "nombre": "Pañales Desechables Talla 4 (40 piezas)",
+            "marca": "Huggies",
+            "costo": 250.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 40,
+            "id": 179
+        },
+        {
+            "nombre": "Aceite para Bebé de Lavanda",
+            "marca": "Johnson's Baby",
+            "costo": 55.0,
+            "fecha_de_caducidad": "2028-02-01",
+            "unidades_de_stock": 50,
+            "id": 180
+        },
+        {
+            "nombre": "Jabón Corporal Líquido Neutro",
+            "marca": "Dove",
+            "costo": 60.0,
+            "fecha_de_caducidad": "2027-11-01",
+            "unidades_de_stock": 85,
+            "id": 181
+        },
+        {
+            "nombre": "Toallitas Húmedas para Bebé (80 piezas)",
+            "marca": "Suavelastic",
+            "costo": 45.0,
+            "fecha_de_caducidad": "2027-04-01",
+            "unidades_de_stock": 115,
+            "id": 182
+        },
+        {
+            "nombre": "Talco para Pies Antitranspirante",
+            "marca": "Am mens",
+            "costo": 25.0,
+            "fecha_de_caducidad": "2027-03-01",
+            "unidades_de_stock": 95,
+            "id": 183
+        },
+        {
+            "nombre": "Shampoo Control Caída",
+            "marca": "Tío Nacho",
+            "costo": 75.0,
+            "fecha_de_caducidad": "2027-12-01",
+            "unidades_de_stock": 65,
+            "id": 184
+        },
+        {
+            "nombre": "Crema para Manos Reparadora",
+            "marca": "Eucerin",
+            "costo": 50.0,
+            "fecha_de_caducidad": "2028-06-01",
+            "unidades_de_stock": 45,
+            "id": 185
+        },
+        {
+            "nombre": "Protector Solar FPS 50",
+            "marca": "Hawaiian Tropic",
+            "costo": 140.0,
+            "fecha_de_caducidad": "2027-05-01",
+            "unidades_de_stock": 30,
+            "id": 186
+        },
+        {
+            "nombre": "Gel Fijador para Cabello Extra Firme",
+            "marca": "Garnier Fructis",
+            "costo": 38.0,
+            "fecha_de_caducidad": "2028-01-01",
+            "unidades_de_stock": 70,
+            "id": 187
+        },
+        {
+            "nombre": "Hilos Dentales Sabor Menta",
+            "marca": "Glide",
+            "costo": 30.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 140,
+            "id": 188
+        },
+        {
+            "nombre": "Tinte para Cabello Tono Negro",
+            "marca": "Koleston",
+            "costo": 60.0,
+            "fecha_de_caducidad": "2027-10-01",
+            "unidades_de_stock": 55,
+            "id": 189
+        },
+        {
+            "nombre": "Bálsamo Labial Humectante",
+            "marca": "Carmex",
+            "costo": 25.0,
+            "fecha_de_caducidad": "2028-04-01",
+            "unidades_de_stock": 105,
+            "id": 190
+        },
+        {
+            "nombre": "Jabón de Tocador de Rosas",
+            "marca": "Palmolive",
+            "costo": 12.0,
+            "fecha_de_caducidad": "2027-09-01",
+            "unidades_de_stock": 170,
+            "id": 191
+        },
+        {
+            "nombre": "Toallas Femeninas Diarias (20 piezas)",
+            "marca": "Kotex",
+            "costo": 30.0,
+            "fecha_de_caducidad": "2028-03-01",
+            "unidades_de_stock": 125,
+            "id": 192
+        },
+        {
+            "nombre": "Pañales para Adulto Talla Grande",
+            "marca": "Depend",
+            "costo": 300.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 25,
+            "id": 193
+        },
+        {
+            "nombre": "Shampoo para Pelo Rizado",
+            "marca": "Sedal",
+            "costo": 40.0,
+            "fecha_de_caducidad": "2027-11-01",
+            "unidades_de_stock": 80,
+            "id": 194
+        },
+        {
+            "nombre": "Crema de Día Anti-arrugas",
+            "marca": "Pond's",
+            "costo": 85.0,
+            "fecha_de_caducidad": "2028-01-01",
+            "unidades_de_stock": 35,
+            "id": 195
+        },
+        {
+            "nombre": "Jabón en Barra para Piel Grasa",
+            "marca": "Asepxia",
+            "costo": 20.0,
+            "fecha_de_caducidad": "2027-10-01",
+            "unidades_de_stock": 90,
+            "id": 196
+        },
+        {
+            "nombre": "Cotonetes de Algodón (200 piezas)",
+            "marca": "Q-Tips",
+            "costo": 35.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 150,
+            "id": 197
+        },
+        {
+            "nombre": "Removedor de Esmalte sin Acetona",
+            "marca": "Ebelin",
+            "costo": 28.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 60,
+            "id": 198
+        },
+        {
+            "nombre": "Desinfectante de Manos en Gel (500ml)",
+            "marca": "Gelish",
+            "costo": 45.0,
+            "fecha_de_caducidad": "2027-05-01",
+            "unidades_de_stock": 110,
+            "id": 199
+        },
+        {
+            "nombre": "Crema Dental para Niños Sabor Fresa",
+            "marca": "Colgate",
+            "costo": 22.0,
+            "fecha_de_caducidad": "2027-12-01",
+            "unidades_de_stock": 100,
+            "id": 200
+        },
+        {
+            "nombre": "Toallitas Desmaquillantes",
+            "marca": "Neutrogena",
+            "costo": 60.0,
+            "fecha_de_caducidad": "2027-03-01",
+            "unidades_de_stock": 40,
+            "id": 201
+        },
+        {
+            "nombre": "Cepillo de Pelo de Bambú",
+            "marca": "Ecobeauty",
+            "costo": 55.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 30,
+            "id": 202
+        },
+        {
+            "nombre": "Frijoles Bayos Refritos (Bolsa 500g)",
+            "marca": "Isadora",
+            "costo": 25.0,
+            "fecha_de_caducidad": "2027-01-01",
+            "unidades_de_stock": 150,
+            "id": 203
+        },
+        {
+            "nombre": "Salsa Picante Roja (370ml)",
+            "marca": "Valentina",
+            "costo": 18.0,
+            "fecha_de_caducidad": "2027-09-01",
+            "unidades_de_stock": 200,
+            "id": 204
+        },
+        {
+            "nombre": "Chile Jalapeño Entero en Vinagre (Lata)",
+            "marca": "La Costeña",
+            "costo": 22.0,
+            "fecha_de_caducidad": "2028-05-01",
+            "unidades_de_stock": 130,
+            "id": 205
+        },
+        {
+            "nombre": "Tortillas de Maíz (Kg)",
+            "marca": "Tortillería Local",
+            "costo": 17.0,
+            "fecha_de_caducidad": "2026-01-11",
+            "unidades_de_stock": 250,
+            "id": 206
+        },
+        {
+            "nombre": "Aceite Vegetal Comestible (900ml)",
+            "marca": "Nutrioli",
+            "costo": 45.0,
+            "fecha_de_caducidad": "2027-03-01",
+            "unidades_de_stock": 110,
+            "id": 207
+        },
+        {
+            "nombre": "Atún en Agua (Lata)",
+            "marca": "Dolores",
+            "costo": 15.0,
+            "fecha_de_caducidad": "2028-02-01",
+            "unidades_de_stock": 180,
+            "id": 208
+        },
+        {
+            "nombre": "Arroz Blanco (Kg)",
+            "marca": "Verde Valle",
+            "costo": 28.0,
+            "fecha_de_caducidad": "2027-10-01",
+            "unidades_de_stock": 140,
+            "id": 209
+        },
+        {
+            "nombre": "Pasta para Sopa de Codito",
+            "marca": "La Moderna",
+            "costo": 8.0,
+            "fecha_de_caducidad": "2028-01-01",
+            "unidades_de_stock": 220,
+            "id": 210
+        },
+        {
+            "nombre": "Mayonesa con Jugo de Limón",
+            "marca": "McCormick",
+            "costo": 35.0,
+            "fecha_de_caducidad": "2027-05-01",
+            "unidades_de_stock": 90,
+            "id": 211
+        },
+        {
+            "nombre": "Sal con Chile y Limón (Polvo)",
+            "marca": "Tajín",
+            "costo": 25.0,
+            "fecha_de_caducidad": "2028-06-01",
+            "unidades_de_stock": 160,
+            "id": 212
+        },
+        {
+            "nombre": "Mermelada de Fresa Light",
+            "marca": "Smucker's",
+            "costo": 45.0,
+            "fecha_de_caducidad": "2027-04-01",
+            "unidades_de_stock": 70,
+            "id": 213
+        },
+        {
+            "nombre": "Cereal de Maíz Tostado (Caja)",
+            "marca": "Zucaritas (Kellogg's)",
+            "costo": 55.0,
+            "fecha_de_caducidad": "2027-01-01",
+            "unidades_de_stock": 85,
+            "id": 214
+        },
+        {
+            "nombre": "Galletas Marías (Paquete Grande)",
+            "marca": "Gamesa",
+            "costo": 22.0,
+            "fecha_de_caducidad": "2027-08-01",
+            "unidades_de_stock": 135,
+            "id": 215
+        },
+        {
+            "nombre": "Huevo Blanco (Dozena)",
+            "marca": "San Juan",
+            "costo": 45.0,
+            "fecha_de_caducidad": "2026-01-20",
+            "unidades_de_stock": 100,
+            "id": 216
+        },
+        {
+            "nombre": "Jamón de Pavo Rebanado (250g)",
+            "marca": "San Rafael",
+            "costo": 40.0,
+            "fecha_de_caducidad": "2026-01-16",
+            "unidades_de_stock": 75,
+            "id": 217
+        },
+        {
+            "nombre": "Salchicha de Pavo (Paquete)",
+            "marca": "Fud",
+            "costo": 35.0,
+            "fecha_de_caducidad": "2026-01-18",
+            "unidades_de_stock": 110,
+            "id": 218
+        },
+        {
+            "nombre": "Tostadas de Maíz Onduladas",
+            "marca": "Salmas",
+            "costo": 28.0,
+            "fecha_de_caducidad": "2027-06-01",
+            "unidades_de_stock": 120,
+            "id": 219
+        },
+        {
+            "nombre": "Harina de Trigo Todo Uso (1 Kg)",
+            "marca": "El Rosal",
+            "costo": 18.0,
+            "fecha_de_caducidad": "2027-11-01",
+            "unidades_de_stock": 150,
+            "id": 220
+        },
+        {
+            "nombre": "Azúcar Estándar (Kg)",
+            "marca": "Zukra",
+            "costo": 26.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 170,
+            "id": 221
+        },
+        {
+            "nombre": "Pimienta Negra Molida (50g)",
+            "marca": "McCormick",
+            "costo": 30.0,
+            "fecha_de_caducidad": "2028-03-01",
+            "unidades_de_stock": 95,
+            "id": 222
+        },
+        {
+            "nombre": "Chile Chipotles Adobados (Lata)",
+            "marca": "Herdez",
+            "costo": 25.0,
+            "fecha_de_caducidad": "2028-01-01",
+            "unidades_de_stock": 105,
+            "id": 223
+        },
+        {
+            "nombre": "Maicena para Espesar (Caja)",
+            "marca": "Maseca",
+            "costo": 15.0,
+            "fecha_de_caducidad": "2027-07-01",
+            "unidades_de_stock": 130,
+            "id": 224
+        },
+        {
+            "nombre": "Chocolate Abuelita (Tabletas)",
+            "marca": "Nestlé",
+            "costo": 38.0,
+            "fecha_de_caducidad": "2027-10-01",
+            "unidades_de_stock": 80,
+            "id": 225
+        },
+        {
+            "nombre": "Miel de Abeja Pura (300g)",
+            "marca": "D'arbol",
+            "costo": 60.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 55,
+            "id": 226
+        },
+        {
+            "nombre": "Papas Fritas Clásicas (Bolsa Grande)",
+            "marca": "Sabritas",
+            "costo": 35.0,
+            "fecha_de_caducidad": "2026-04-01",
+            "unidades_de_stock": 165,
+            "id": 227
+        },
+        {
+            "nombre": "Salsa de Soya Clásica (295ml)",
+            "marca": "Kikkoman",
+            "costo": 30.0,
+            "fecha_de_caducidad": "2028-09-01",
+            "unidades_de_stock": 75,
+            "id": 228
+        },
+        {
+            "nombre": "Vinagre Blanco (1 L)",
+            "marca": "Clemente Jacques",
+            "costo": 18.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 125,
+            "id": 229
+        },
+        {
+            "nombre": "Cajeta de Leche Quemada (380g)",
+            "marca": "Coronado",
+            "costo": 45.0,
+            "fecha_de_caducidad": "2027-02-01",
+            "unidades_de_stock": 60,
+            "id": 230
+        },
+        {
+            "nombre": "Consomé de Pollo en Polvo",
+            "marca": "Knorr",
+            "costo": 32.0,
+            "fecha_de_caducidad": "2027-11-01",
+            "unidades_de_stock": 100,
+            "id": 231
+        },
+        {
+            "nombre": "Tortilla Chips para Nachos",
+            "marca": "Tostitos",
+            "costo": 40.0,
+            "fecha_de_caducidad": "2026-05-01",
+            "unidades_de_stock": 115,
+            "id": 232
+        },
+        {
+            "nombre": "Chicharrón de Cerdo Botana (Bolsa)",
+            "marca": "El Ranchero",
+            "costo": 25.0,
+            "fecha_de_caducidad": "2026-03-01",
+            "unidades_de_stock": 145,
+            "id": 233
+        },
+        {
+            "nombre": "Bolsa Ziploc para Alimentos (Medianan)",
+            "marca": "Ziploc",
+            "costo": 50.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 70,
+            "id": 234
+        },
+        {
+            "nombre": "Aceite de Oliva Extra Virgen (500ml)",
+            "marca": "Carbonell",
+            "costo": 95.0,
+            "fecha_de_caducidad": "2028-04-01",
+            "unidades_de_stock": 40,
+            "id": 235
+        },
+        {
+            "nombre": "Gelatina en Polvo Fresa (120g)",
+            "marca": "Jello",
+            "costo": 10.0,
+            "fecha_de_caducidad": "2027-09-01",
+            "unidades_de_stock": 190,
+            "id": 236
+        },
+        {
+            "nombre": "Velas Aromáticas Vainilla (3 piezas)",
+            "marca": "Aromas del Cielo",
+            "costo": 60.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 35,
+            "id": 237
+        },
+        {
+            "nombre": "Harina de Hot Cakes Tradicional",
+            "marca": "Pronto",
+            "costo": 28.0,
+            "fecha_de_caducidad": "2027-01-01",
+            "unidades_de_stock": 90,
+            "id": 238
+        },
+        {
+            "nombre": "Salsa Tipo Cátsup (620g)",
+            "marca": "Del Monte",
+            "costo": 24.0,
+            "fecha_de_caducidad": "2027-05-01",
+            "unidades_de_stock": 100,
+            "id": 239
+        },
+        {
+            "nombre": "Cacahuates Japoneses (Bolsa 150g)",
+            "marca": "Mafer",
+            "costo": 20.0,
+            "fecha_de_caducidad": "2026-08-01",
+            "unidades_de_stock": 150,
+            "id": 240
+        },
+        {
+            "nombre": "Rollos de Papel Aluminio (7.6m)",
+            "marca": "Reynolds",
+            "costo": 40.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 80,
+            "id": 241
+        },
+        {
+            "nombre": "Sal de Mar Fina (Kg)",
+            "marca": "Sal La Fina",
+            "costo": 12.0,
+            "fecha_de_caducidad": "N/A",
+            "unidades_de_stock": 210,
+            "id": 242
+        }
+    ]
+}

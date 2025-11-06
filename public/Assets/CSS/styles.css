@@ -1,0 +1,181 @@
+:root{
+    font-size: 10px;
+}
+
+body{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2rem;
+    overflow: hidden;
+    background-color: #121212;
+}
+
+.layout{
+    width: 100vw;
+    height: 100vh;
+    margin-left: 5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.layout__header{
+    margin-right: -72.5rem;
+    margin-top: -4rem;
+    margin-bottom: auto;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+#icon{
+    width: 50px;
+    height: 50px;
+    margin-top: -1px;
+}
+
+#title{
+    font-size: 5rem;
+    font-weight: bold;
+    word-spacing: 1rem;
+    color: #00FFFF; /* Neon blue for title */
+    text-align: center;
+}
+
+.layout__chat{
+    width: 65rem;
+    height: 55rem;
+    margin-left: 14rem;
+    border: 1px solid #00FFFF; /* Neon blue border */
+    border-radius: 1.2rem;
+    box-shadow: 0 0 10px #00FFFF;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat__messages{
+    width: 90%;
+    height: 75rem;
+    margin-top: 1.8rem;
+    padding: 1.5rem;
+    background-color: #1E1E1E; /* Dark background for messages */
+    border: none;
+    outline: none;
+    border-radius: 1.2rem;
+    box-shadow: 0 0 8px #00FFFF inset; /* Neon blue shadow */
+    display: flex; /* Make it a flex container */
+    flex-direction: column; /* Stack messages vertically */
+    gap: 1rem; /* Space between messages */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.messages__user{
+    padding: 1.2rem;
+    font-size: 1.8rem;
+    font-weight: 400;
+    background-color:#FF1744;
+    color:azure;
+    word-wrap:break-word;
+    white-space: pre-line;
+    border: none;
+    outline: none;
+    border-radius: 1.2rem;
+    display: inline-block; /* Make it shrink-wrap its content */
+    max-width: 80%; /* Limit the width of the message bubble */
+    word-break: break-word; /* Ensure long words break */
+    margin-right: auto; /* Push user messages to the right */
+}
+
+.messages__bot {
+    padding: 1.2rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+    background-color:#00FFFF;
+    color: #1E1E1E;
+    word-wrap: break-word;
+    white-space: pre-line;
+    border: none;
+    outline: none;
+    border-radius: 1.2rem;
+    display: inline-block; /* Make it shrink-wrap its content */
+    max-width: 80%; /* Limit the width of the message bubble */
+    word-break: break-word; /* Ensure long words break */
+    margin-left: auto; /* Push bot messages to the left */
+}
+
+.chat__inputs{
+    width: 95%;
+    height: 20%;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+}
+
+#inputText{
+    flex: 5;
+    font-size: 1.8rem;
+    font-weight: 400;
+    padding: 0.9rem;
+    background-color: #1E1E1E; /* Dark background for input */
+    color: #E0E0E0; /* Light text */
+    border: none;
+    outline: none;
+    border-radius: 1.2rem;
+    transition: all 250ms ease-out;
+}
+
+#inputText:focus{
+    box-shadow: 0 0 8px #00FFFF; /* Neon blue shadow on focus */
+}
+
+#inputBtn{
+    flex: 3;
+    font-size: 1.8rem;
+    font-weight: 600;
+    padding: 0.9rem;
+    background-color: #FF1744;
+    color: #121212;
+    border: none;
+    border-radius: 1.2rem;
+    cursor: pointer;
+    transition: all 250ms ease-in;
+}
+
+#inputBtn:hover{
+    background-color: #c5042b;
+    color: azure;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    height: 4px;
+    width: 130px;
+    --c: no-repeat linear-gradient(#0008ff 0 0);
+    background: var(--c), var(--c), #1E1E1E;
+    background-size: 60% 100%;
+    animation: l16 3s infinite;
+}
+
+@keyframes l16 {
+    0% {
+        background-position: -150% 0, -150% 0
+    }
+
+    66% {
+        background-position: 250% 0, -150% 0
+    }
+
+    100% {
+        background-position: 250% 0, 250% 0
+    }
+}
