@@ -83,8 +83,12 @@ Busco mi primer empleo en desarrollo web.
 
 ## Contáctame en:
 GitHub: github.com/JesusBustos12
+
 LinkedIn: linkedin.com/in/jesus-bustos-arizmendi-325329283
+
 Correo: jesusbustosarizmendi0@gmail.com
+
 numero de celular: 762-119-2732
+
 
 ¡Gracias por revisar mi trabajo!
