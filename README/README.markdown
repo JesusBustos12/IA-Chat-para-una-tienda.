@@ -59,7 +59,7 @@ Este proyecto refleja competencias clave para un **Junior Full-Stack**:
 
 ## Demo en vivo
 > **Prueba el chat en tiempo real:**  
-> [https://chat-tienda-ai.onrender.com](https://chat-tienda-ai.onrender.com)  
+> (https://ia-chat-para-una-tienda.onrender.com/)  
 > *(Espera 20-30 segundos al primer uso — plan gratuito)*
 
 ## Pregunta:  
@@ -92,3 +92,4 @@ numero de celular: 762-119-2732
 
 
 ¡Gracias por revisar mi trabajo!
+
