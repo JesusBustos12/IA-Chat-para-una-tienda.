@@ -59,9 +59,9 @@ Este proyecto refleja competencias clave para un **Junior Full-Stack**:
 
 ## Demo en vivo
 > **Prueba el chat en tiempo real:**  
-> (https://ia-chat-para-una-tienda.onrender.com/)  
+>  https://ia-chat-para-una-tienda.onrender.com/  
 > *(Espera 20-30 segundos al primer uso — plan gratuito)*
-
+ 
 ## Pregunta:  
 - "¿Cuánto cuesta el refresco de cola?"  
 - "¿Qué jugos tienen en stock?"  
@@ -92,4 +92,5 @@ numero de celular: 762-119-2732
 
 
 ¡Gracias por revisar mi trabajo!
+
 
