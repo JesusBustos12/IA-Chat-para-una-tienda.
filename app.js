@@ -163,10 +163,19 @@ app.post("/assistant/chat", async(req, res) => {
 
         log(`Total bot messages in chat: ${messagesBot.length}`);
 
+        if (messagesBot.length === 0) {
+            throw new Error("No se encontraron respuestas del asistente en este hilo.");
+        }
+
         // Sort the messages:
-        const messagesReply = messagesBot
-                                        .sort((a,b) => b.created_at - a.created_at)[0]
-                                        .content[0].text.value;
+        const sortedMessages = messagesBot.sort((a, b) => b.created_at - a.created_at);
+        const latestMessage = sortedMessages[0];
+
+        if (!latestMessage.content || latestMessage.content.length === 0 || latestMessage.content[0].type !== "text") {
+            throw new Error("La respuesta más reciente del asistente no contiene texto.");
+        }
+
+        const messagesReply = latestMessage.content[0].text.value;
 
         log("Message: " + messagesReply);
 
