@@ -141,7 +141,7 @@ app.post("/assistant/chat", async(req, res) => {
             await new Promise(resolve => setTimeout(resolve, 1000));
 
             // Status of thread and run details:
-            runStatus = await openai.beta.threads.runs.retrieve(threadId, run.id);
+            runStatus = await openai.beta.threads.runs.retrieve(run.id, { thread_id: threadId });
 
             // Add a new attempt:
             attempts++;
