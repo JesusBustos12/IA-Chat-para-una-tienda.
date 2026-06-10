@@ -134,7 +134,7 @@ app.post("/assistant/chat", async(req, res) => {
         // Process executions:
         let runStatus = run;
         let attempts = 0;
-        const maxAttempts = 15;
+        const maxAttempts = 60;
 
         while(runStatus.status !== "completed" && attempts < maxAttempts){
             // Resolve the promise:

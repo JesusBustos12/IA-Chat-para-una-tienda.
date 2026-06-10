@@ -1,7 +1,8 @@
 {
   "functions": {
     "app.js": {
-      "includeFiles": "public/**"
+      "includeFiles": "public/**",
+      "maxDuration": 60
     }
   },
   "rewrites": [
