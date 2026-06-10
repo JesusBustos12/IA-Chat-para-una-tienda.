@@ -13,6 +13,7 @@ const log = (...args) => { if(isDev) console.log("[DEV]", ...args); };
 
 // Create and configure the server:
 const app = express();
+app.set("trust proxy", 1); // Confiar en el proxy de Vercel para obtener la IP del cliente
 const port = process.env.PORT || 3000;
 
 // Security Middleware
