@@ -176,7 +176,9 @@ app.post("/assistant/chat", async(req, res) => {
         });
 
     } catch(exception) {
-        console.error("[ERROR] /assistant/chat:", exception.message);
+        // Aplanar el mensaje y el stack para que Vercel lo imprima en una sola línea
+        const fullError = (exception.stack || exception.message).replace(/\n/g, " | ");
+        console.error("[ERROR] /assistant/chat:", fullError);
 
         // Distinguir errores de OpenAI de errores internos:
         const statusCode = exception.status || 500;
