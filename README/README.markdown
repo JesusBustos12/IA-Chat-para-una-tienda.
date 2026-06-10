@@ -69,22 +69,27 @@ Este proyecto refleja competencias clave para un **Junior Full-Stack**:
 
 ## Notas para empleadores
 Este es mi proyecto full-stack más avanzado hasta la fecha.
-Lo construí en 7 horas tras aprender los conceptos en 30 días, sin seguir videos paso a paso.
+Lo construí en 7 horas tras aprender los conceptos en 30 días, sin seguir tutoriales paso a paso.
 Demuestra que:
 
-Puedo integrar APIs complejas en producción.
-Domino backend y frontend sin frameworks.
-Priorizo seguridad, rendimiento y experiencia de usuario.
-Aprendo rápido y entrego resultados funcionales.
+1. Puedo integrar APIs complejas en producción.
+2. Domino backend y frontend sin frameworks.
+3. Priorizo seguridad, rendimiento y experiencia de usuario.
+4. Aprendo rápido y entrego resultados funcionales.
+
+## Configuración de la Base de Datos (productos.json)
+El archivo `productos.json` contiene la base de conocimiento de la tienda. Para que el Asistente pueda responder preguntas basadas en este archivo:
+1. Sube `productos.json` a la plataforma de OpenAI (Storage / Vector Store).
+2. Asígnalo al Asistente en la configuración ("File Search").
+3. Asegúrate de colocar el `ASSISTANT_ID` en el archivo `.env`.
 
 Estoy listo para contribuir en equipos reales como Junior Full-Stack Developer.
-Contacto
+
+## Contáctame
 Busco mi primer empleo en desarrollo web. 
 
-## Contáctame en:
-GitHub: github.com/JesusBustos12
-LinkedIn: linkedin.com/in/jesus-bustos-arizmendi-325329283
-Correo: jesusbustosarizmendi0@gmail.com
-numero de celular: 762-119-2732
+* **GitHub:** [github.com/JesusBustos12](https://github.com/JesusBustos12)
+* **LinkedIn:** [linkedin.com/in/jesus-bustos-arizmendi-325329283](https://www.linkedin.com/in/jesus-bustos-arizmendi-325329283)
+* **Correo:** [jesusbustosarizmendi0@gmail.com](mailto:jesusbustosarizmendi0@gmail.com)
 
 ¡Gracias por revisar mi trabajo!

@@ -4,10 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chat inteligente con IA para tienda. Consulta precios, disponibilidad y productos en tiempo real usando OpenAI Assistants. Proyecto full-stack por Jesús Bustos.">
+    <meta name="author" content="Jesús Bustos Arizmendi">
+    <meta name="keywords" content="chat IA, tienda inteligente, OpenAI, asistente virtual, portafolio full-stack">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Chat IA para Tienda — Asistente Inteligente">
+    <meta property="og:description" content="Consulta precios, disponibilidad y productos en tiempo real con inteligencia artificial.">
+    <meta property="og:image" content="./Assets/Imgs/store-front.png">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Chat IA para Tienda">
+    <meta name="twitter:description" content="Asistente virtual inteligente para consultar productos de tienda.">
+
     <link rel="stylesheet" href="./Assets/CSS/styles.css"/>
-    <link rel="icon" type="image/png" href="./Assets/Imgs/store-front.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="./Assets/Imgs/store-front.png">
+    <link rel="apple-touch-icon" href="./Assets/Imgs/store-front.png">
+    <link rel="canonical" href="https://chat-tienda-ai.onrender.com/">
     <script src="./Assets/JS/main.js" defer></script>
-    <title>IA chat for the store</title>
+    <title>Chat IA para Tienda — Asistente Virtual Inteligente</title>
 </head>
 
 <body>
@@ -15,20 +32,25 @@
     <main class="layout">
 
         <header class="layout__header">
-            <img id="icon" src="./Assets/Imgs/store-front.png">
-            <h2 id="title">IA chat for the store</h2>
+            <img id="icon" src="./Assets/Imgs/store-front.png" alt="Icono de tienda — Chat IA" loading="lazy" width="50" height="50">
+            <h1 id="title">Chat IA para Tienda</h1>
         </header>
 
-        <section class="layout__chat">
+        <section class="layout__chat" aria-label="Chat con asistente virtual">
 
-            <div class="chat__messages"></div>
+            <div class="chat__messages" role="log" aria-live="polite" aria-label="Historial de mensajes"></div>
 
-            <div class="chat__inputs">
-                <input type="text" id="inputText" placeholder="What is your request?"/>
-                <input type="button" id="inputBtn" value="Send"/>
-            </div>
+            <form class="chat__inputs" id="chatForm" autocomplete="off">
+                <label for="inputText" class="sr-only">Escribe tu mensaje</label>
+                <input type="text" id="inputText" placeholder="¿Cuál es tu consulta?" maxlength="500" aria-label="Mensaje para el asistente"/>
+                <button type="submit" id="inputBtn">Enviar</button>
+            </form>
 
         </section>
+
+        <footer class="layout__footer">
+            <p>Desarrollado por Jesús Bustos — Portafolio Full-Stack</p>
+        </footer>
 
     </main>
       

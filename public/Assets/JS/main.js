@@ -1,33 +1,62 @@
+// --- Utils ---
+const sanitizeHTML = (str) => {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+};
+
+const createMessageBubble = (text, className, prefix, isHTML = false) => {
+    const div = document.createElement("div");
+    div.classList.add(className);
+    if(isHTML) {
+        div.innerHTML = `<strong>${prefix}:</strong> ${text}`;
+    } else {
+        div.innerHTML = `<strong>${prefix}:</strong> ${sanitizeHTML(text)}`;
+    }
+    return div;
+};
+
 // Selectors:
+const chatForm = document.getElementById("chatForm");
 const messagesSend = document.getElementById("inputBtn");
 const messagesContent = document.querySelector(".chat__messages");
 const messagesUser = document.getElementById("inputText");
 
 // id:
-const id = Date.now() + Math.floor(230 + Math.random() * 500);
+const id = crypto.randomUUID();
+
+// State:
+let isLoading = false;
 
 // Backend response function:
 const responseBack = async() => {
+    if(isLoading) return false;
 
     // Extract the value of messagesUser:
     const message = messagesUser.value.trim();
 
     if(!message) return false;
 
-    // messageResponse:
-    setTimeout(() => {
-        messagesContent.innerHTML += `<div class="messages__bot messages__bot--response">Bot: <div class="loader"></div></div>`;
-        messagesContent.scrollTop = messagesContent.scrollHeight;
-    }, 250);
+    isLoading = true;
+    messagesSend.disabled = true;
+    messagesSend.textContent = "Enviando...";
+    messagesUser.disabled = true;
 
     // messageUser:
-    messagesContent.innerHTML += `<div class="messages__user">User: ${message}</div>`;
+    const userBubble = createMessageBubble(message, "messages__user", "Tú");
+    messagesContent.appendChild(userBubble);
     messagesContent.scrollTop = messagesContent.scrollHeight;
 
     messagesUser.value = "";
 
-    try{
+    // messageResponse (loader):
+    const loaderBubble = document.createElement("div");
+    loaderBubble.classList.add("messages__bot", "messages__bot--response");
+    loaderBubble.innerHTML = `<strong>Asistente:</strong> <div class="loader"></div>`;
+    messagesContent.appendChild(loaderBubble);
+    messagesContent.scrollTop = messagesContent.scrollHeight;
 
+    try {
         const response = await fetch("/assistant/chat", {
             method: "POST",
             headers: {
@@ -40,29 +69,57 @@ const responseBack = async() => {
 
         const data = await response.json();
 
-        // Remove messageResponse:
-        document.querySelector(".messages__bot--response").remove();
+        if(!response.ok) {
+            throw new Error(data.exception || "Error desconocido del servidor");
+        }
 
-        // Replace /\n/g for `<br>`:
-        const messageReplace = data.messagesReply.replace(/\n/g, `<br>`);
+        if(!data.messagesReply) {
+            throw new Error("Respuesta vacía del asistente");
+        }
+
+        // Remove messageResponse:
+        if(loaderBubble.parentNode) {
+            loaderBubble.remove();
+        }
+
+        // Replace \n for <br> keeping XSS protection
+        const sanitizedText = sanitizeHTML(data.messagesReply);
+        const messageReplace = sanitizedText.replace(/\n/g, `<br>`);
 
         // messageBot:
-        messagesContent.innerHTML += `<div class="messages__bot">Bot: ${messageReplace}</div>`;
+        const botBubble = createMessageBubble(messageReplace, "messages__bot", "Asistente", true);
+        messagesContent.appendChild(botBubble);
         messagesContent.scrollTop = messagesContent.scrollHeight;
 
-        console.log("Message the Bot: " + messageReplace);
+        console.log("Mensaje del Asistente: ", data.messagesReply);
 
-    }catch(exception){
-        console.log(exception, "Error with the server");
+    } catch(exception) {
+        console.error("Error del servidor:", exception);
+
+        // Remove messageResponse:
+        if(loaderBubble.parentNode) {
+            loaderBubble.remove();
+        }
+
+        // Error bubble
+        const errorBubble = document.createElement("div");
+        errorBubble.classList.add("messages__bot", "messages__bot--error");
+        errorBubble.textContent = "⚠️ Error: No se pudo obtener respuesta. Intenta de nuevo.";
+        messagesContent.appendChild(errorBubble);
+        messagesContent.scrollTop = messagesContent.scrollHeight;
+    } finally {
+        isLoading = false;
+        messagesSend.disabled = false;
+        messagesSend.textContent = "Enviar";
+        messagesUser.disabled = false;
+        messagesUser.focus();
     }
-
 }
 
 // Events:
-messagesUser.addEventListener("keypress", (event) => {
-    if(event.key == "Enter"){
+if (chatForm) {
+    chatForm.addEventListener("submit", (event) => {
         event.preventDefault();
         responseBack();
-    }
-});
-messagesSend.addEventListener("click", responseBack);
+    });
+}
