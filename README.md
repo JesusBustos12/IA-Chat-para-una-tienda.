@@ -21,7 +21,7 @@ Como estudiante universitario autodidacta, desarrollé este proyecto para:
 * **Diseño moderno:** Tema oscuro, tipografía clara, sombras neón, transiciones suaves.
 * **Entrada por teclado:** Enviar mensaje con `Enter` o botón.
 * **Seguridad:** API key protegida con `dotenv` y nunca expuesta en GitHub.
-* **Despliegue listo:** Configurado para Render, Vercel o Hostinger.
+* **Despliegue listo:** Configurado para Vercel con Serverless Functions.
 
 ## Tecnologías utilizadas
 * **Node.js + Express:** Servidor backend y rutas API.
@@ -31,11 +31,14 @@ Como estudiante universitario autodidacta, desarrollé este proyecto para:
 * **JSON:** Base de datos estática de productos (`productos.json`).
 * **dotenv:** Gestión segura de variables de entorno.
 * **Git & GitHub:** Control de versiones y colaboración.
-* **Render / Vercel (opcional):** Despliegue en producción.
+* **Vercel:** Despliegue en producción con Serverless Functions.
 
 ## Estructura del proyecto
 chat-tienda-openai/
+├── api/
+│   └── index.js          # Punto de entrada Vercel Serverless
 ├── app.js                # Servidor Express + lógica OpenAI
+├── vercel.json           # Configuración de despliegue Vercel
 ├── package.json          # Dependencias y scripts
 ├── productos.json        # 240+ productos reales (stock, precio, etc.)
 ├── public/
@@ -56,13 +59,12 @@ Este proyecto refleja competencias clave para un **Junior Full-Stack**:
 * **APIs externas:** Integración avanzada con OpenAI (threads, runs).
 * **Arquitectura limpia:** Separación de responsabilidades (backend/frontend).
 * **Seguridad:** Sanitización para XSS, validación en backend, `.env` correcto.
-* **Despliegue:** Listo para hosting con Node.js (Render, Hostinger).
+* **Despliegue:** Listo para producción en Vercel con Serverless Functions.
 * **Autonomía:** Construido en **7 horas** sin seguir tutoriales.
 
 ## Demo en vivo
 > **Prueba el chat en tiempo real:**  
-> [https://chat-tienda-ai.onrender.com](https://chat-tienda-ai.onrender.com)  
-> *(Espera 20-30 segundos al primer uso — plan gratuito)*
+> [https://ia-chat-para-una-tienda.vercel.app](https://ia-chat-para-una-tienda.vercel.app)
 
 ## Pregunta:  
 - "¿Cuánto cuesta el refresco de cola?"  

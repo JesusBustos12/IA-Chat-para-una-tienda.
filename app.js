@@ -37,8 +37,17 @@ app.use(express.urlencoded({
 
 app.use("/assistant/chat", apiLimiter);
 
+import path from "path";
+
+// Vercel Serverless usa process.cwd() como la raíz del proyecto
+const publicPath = path.join(process.cwd(), "public");
+
 // Serve the Front-end:
-app.use("/", express.static("public"));
+app.use("/", express.static(publicPath));
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(publicPath, "index.html"));
+});
 
 // Pass the OpenAI API key:
 const openai = new OpenAI({
@@ -184,18 +193,29 @@ app.use((err, req, res, next) => {
     });
 });
 
-// Graceful shutdown:
-const server = app.listen(port, () => {
-    console.log(`✅ Servidor activo en: http://localhost:${port}`);
-});
+// Exportar para Vercel Serverless:
+export default app;
 
-const gracefulShutdown = (signal) => {
-    console.log(`\n⏳ ${signal} recibido. Cerrando servidor...`);
-    server.close(() => {
-        console.log("✅ Servidor cerrado correctamente.");
-        process.exit(0);
+// Solo iniciar el servidor cuando se ejecuta directamente (desarrollo local).
+// En Vercel, el archivo api/index.js importa la app sin necesidad de listen().
+const isDirectRun = process.argv[1] && (
+    process.argv[1].endsWith("app.js") ||
+    process.argv[1].endsWith("app")
+);
+
+if(isDirectRun) {
+    const server = app.listen(port, () => {
+        console.log(`✅ Servidor activo en: http://localhost:${port}`);
     });
-};
 
-process.on("SIGTERM", () => gracefulShutdown("SIGTERM"));
-process.on("SIGINT", () => gracefulShutdown("SIGINT"));
+    const gracefulShutdown = (signal) => {
+        console.log(`\n⏳ ${signal} recibido. Cerrando servidor...`);
+        server.close(() => {
+            console.log("✅ Servidor cerrado correctamente.");
+            process.exit(0);
+        });
+    };
+
+    process.on("SIGTERM", () => gracefulShutdown("SIGTERM"));
+    process.on("SIGINT", () => gracefulShutdown("SIGINT"));
+}
