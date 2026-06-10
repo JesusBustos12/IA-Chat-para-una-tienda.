@@ -99,13 +99,22 @@ app.post("/assistant/chat", async(req, res) => {
     // Try and catch:
     try{
 
+        // Validar que las variables de entorno existan
+        if (!process.env.OPENAI_ASSISTANT_ID || process.env.OPENAI_ASSISTANT_ID.trim() === "") {
+            throw new Error("Error Crítico: OPENAI_ASSISTANT_ID no está definido en Vercel o está vacío.");
+        }
+
         // UserThread validation:
         if(!userThread.has(id)){
             const thread = await openai.beta.threads.create();
+            if (!thread || !thread.id) throw new Error("OpenAI no devolvió un thread válido.");
             userThread.set(id, thread.id);
         }
 
         const threadId = userThread.get(id);
+        if (!threadId || typeof threadId !== "string") {
+            throw new Error("El threadId generado es inválido: " + String(threadId));
+        }
 
         // Add message to threadId:
         await openai.beta.threads.messages.create(threadId, {
@@ -114,8 +123,12 @@ app.post("/assistant/chat", async(req, res) => {
 
         // Execution:
         const run = await openai.beta.threads.runs.create(threadId, {
-            assistant_id: process.env.OPENAI_ASSISTANT_ID
+            assistant_id: process.env.OPENAI_ASSISTANT_ID.trim()
         });
+
+        if (!run || !run.id) {
+            throw new Error("OpenAI no devolvió un run ID válido.");
+        }
 
         // Process executions:
         let runStatus = run;
