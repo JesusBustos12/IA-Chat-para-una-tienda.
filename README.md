@@ -1,8 +1,7 @@
 # Chat para Tienda con OpenAI Assistants - Portafolio Full-Stack
 
 ## Descripción
-Aplicación web full-stack que implementa un **chat inteligente para negocios** utilizando la **API de Assistants de OpenAI**. El sistema permite conversaciones persistentes por usuario, responde preguntas sobre productos reales (cargados desde un archivo JSON) y muestra un diseño moderno con loader animado, efectos neón y mensajes diferenciados por rol (usuario/bot). Construido con **Node.js, Express, JavaScript vanilla y CSS puro**, sin frameworks. Ideal para demostrar habilidades full-stack en un primer empleo.
-
+Aplicación web full-stack que implementa un **chat inteligente para negocios** utilizando la **API de Assistants de OpenAI**. El sistema permite conversaciones persistentes por usuario, responde preguntas sobre productos reales (cargados desde un archivo JSON) y muestra un diseño moderno con loader animado, efectos neón y mensajes diferenciados por rol (usuario/bot). Construido con **Node.js, Express, JavaScript vanilla y CSS puro**, sin frameworks.
 ## Objetivo
 Como estudiante universitario autodidacta, desarrollé este proyecto para:
 * Mostrar dominio de **Node.js + Express** en el backend.
