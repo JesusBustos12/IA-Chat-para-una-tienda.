@@ -42,13 +42,14 @@ body {
     font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 1.6rem;
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow: hidden; /* Prevenir scroll de la página completa */
     background-color: var(--color-bg-primary);
     background-image: 
         radial-gradient(at 10% 20%, rgba(0, 229, 255, 0.05) 0px, transparent 50%),
         radial-gradient(at 90% 80%, rgba(255, 46, 147, 0.04) 0px, transparent 50%);
     color: var(--color-text-primary);
-    min-height: 100vh;
+    height: 100vh;
+    height: 100dvh; /* Altura dinámica para navegadores móviles */
 }
 
 img {
@@ -70,14 +71,15 @@ img {
 }
 
 .layout {
-    width: 100%;
-    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 2.5rem;
-    gap: 2.5rem;
+    justify-content: space-between;
+    padding: 2rem;
+    overflow: hidden;
 }
 
 .layout__header {
@@ -86,6 +88,8 @@ img {
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
+    padding-bottom: 0.5rem;
+    flex-shrink: 0; /* Prevenir que el header se achique */
     animation: messageSlideIn 0.5s var(--transition-medium) forwards;
 }
 
@@ -109,7 +113,9 @@ img {
 .layout__chat {
     width: 100%;
     max-width: 70rem;
-    height: 62rem;
+    flex: 1; /* Expandirse para llenar el espacio vertical restante */
+    min-height: 0; /* Permitir que el contenedor se achique en pantallas pequeñas */
+    margin: 1rem 0;
     background: var(--color-bg-secondary);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -306,11 +312,12 @@ img {
 }
 
 .layout__footer {
-    padding: 1rem;
+    padding: 0.5rem;
     text-align: center;
     font-size: 1.3rem;
     color: var(--color-text-secondary);
     opacity: 0.75;
+    flex-shrink: 0; /* Prevenir que el footer se achique */
 }
 
 /* Responsive design adjustments */
@@ -332,8 +339,6 @@ img {
 
     .layout__chat {
         width: 100%;
-        height: 75vh;
-        max-height: 650px;
         border-radius: 2rem;
     }
 
@@ -374,10 +379,6 @@ img {
     #icon {
         width: 40px;
         height: 40px;
-    }
-
-    .layout__chat {
-        height: 78vh;
     }
 
     .chat__messages {
