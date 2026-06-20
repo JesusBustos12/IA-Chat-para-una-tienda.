@@ -87,6 +87,15 @@ try {
             queueLimit: 0
         });
         console.log("✅ Conexión a TiDB configurada.");
+        // Cargar total de productos en background
+        dbPool.execute('SELECT COUNT(DISTINCT nombre) AS total FROM productos')
+            .then(([rows]) => {
+                cachedTotalProducts = rows[0].total;
+                console.log(`✅ Total de productos actualizados para el prompt: ${cachedTotalProducts}`);
+            })
+            .catch(err => {
+                console.error("⚠️ No se pudo obtener el total de productos:", err.message);
+            });
     } else {
         console.warn("⚠️ DATABASE_URL no definida. La búsqueda de productos fallará.");
     }
@@ -94,19 +103,22 @@ try {
     console.error("❌ Error al conectar con TiDB:", error.message);
 }
 
+// Caché para el total de productos
+let cachedTotalProducts = "múltiples";
+
 // Almacenamiento en memoria de sesiones por usuario.
 // NOTA: En producción, considera persistencia con Redis o SQLite.
 const userSessions = new Map();
 
-// System prompt para la IA
-const systemPrompt = `Eres el asistente virtual amable de una TIENDA DE ABARROTES MEXICANA.
+// System prompt template para la IA
+const systemPromptTemplate = `Eres el asistente virtual amable de una TIENDA DE ABARROTES MEXICANA.
 TU MISIÓN es atender a los clientes, buscar productos usando tu herramienta, y dar información del negocio.
 
 INFORMACIÓN DE LA TIENDA (Solo menciónala si te preguntan):
-- Ubicación: Localidad de Ahualulco, municipio de Tetipac, Guerrero, México.
+- Ubicación: Calle pilcaya, Localidad de Ahualulco, municipio de Tetipac, Guerrero, México.
 - Horarios: Lunes a Viernes de 7:00 AM a 8:30 PM. Sábados de 10:00 AM a 10:00 PM. Domingos NO hay servicio.
 - Métodos de pago: Efectivo (MXN) o transferencia digital vía Mercado Pago.
-- Inventario: Abarrotes, botanas, refrescos, lácteos, despensa básica y limpieza. (Nunca ofrezcas juguetes, electrónica, ropa o muebles).
+- Inventario: Contamos con un total de {TOTAL_PRODUCTOS} productos distintos. Abarrotes, botanas, refrescos, lácteos, despensa básica y limpieza. (Nunca ofrezcas juguetes, electrónica, ropa o muebles).
 - Detalles del dueño: Tienes estrictamente prohibido dar información del dueño o asuntos administrativos.
 
 REGLAS DE CONVERSACIÓN Y BÚSQUEDA:
@@ -185,8 +197,13 @@ app.post("/assistant/chat", async(req, res) => {
         let sessionMessages = userSessions.get(id);
         if (!sessionMessages) {
             sessionMessages = [
-                { role: "system", content: systemPrompt }
+                { role: "system", content: systemPromptTemplate.replace('{TOTAL_PRODUCTOS}', cachedTotalProducts) }
             ];
+        } else {
+            // Update the system message just in case the count changed or arrived late
+            if (sessionMessages.length > 0 && sessionMessages[0].role === "system") {
+                sessionMessages[0].content = systemPromptTemplate.replace('{TOTAL_PRODUCTOS}', cachedTotalProducts);
+            }
         }
 
         // Append user message
