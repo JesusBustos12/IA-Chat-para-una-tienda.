@@ -109,6 +109,7 @@ let cachedTotalProducts = "múltiples";
 // Almacenamiento en memoria de sesiones por usuario.
 // NOTA: En producción, considera persistencia con Redis o SQLite.
 const userSessions = new Map();
+const userDailyLimits = new Map();
 
 // System prompt template para la IA
 const systemPromptTemplate = `Eres el asistente virtual amable de una TIENDA DE ABARROTES MEXICANA.
@@ -184,6 +185,19 @@ app.post("/assistant/chat", async(req, res) => {
     if(!id){
         return res.status(400).json({
             exception: "Error. Se requiere un ID válido."
+        });
+    }
+
+    const todayStr = new Date().toISOString().split('T')[0];
+    let dailyData = userDailyLimits.get(id);
+    
+    if (!dailyData || dailyData.date !== todayStr) {
+        dailyData = { date: todayStr, count: 0 };
+    }
+    
+    if (dailyData.count >= 20) {
+        return res.status(429).json({
+            exception: "Has alcanzado el límite de 20 consultas por día. Regresa mañana para seguir platicando."
         });
     }
 
@@ -326,9 +340,15 @@ app.post("/assistant/chat", async(req, res) => {
         const messagesReply = responseMessage.content;
         log("Message: " + messagesReply);
 
+        // Registrar la petición exitosa y calcular restantes
+        dailyData.count++;
+        userDailyLimits.set(id, dailyData);
+        const remainingCount = 20 - dailyData.count;
+
         // Status 200:
         return res.status(200).json({
-            messagesReply
+            messagesReply,
+            remainingCount
         });
 
     } catch(exception) {

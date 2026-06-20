@@ -21,12 +21,56 @@ const chatForm = document.getElementById("chatForm");
 const messagesSend = document.getElementById("inputBtn");
 const messagesContent = document.querySelector(".chat__messages");
 const messagesUser = document.getElementById("inputText");
+const limitFill = document.getElementById("limitFill");
+const limitText = document.getElementById("limitText");
 
-// id:
-const id = crypto.randomUUID();
+// id and LocalStorage state:
+let id = localStorage.getItem("chat_session_id");
+if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem("chat_session_id", id);
+}
+
+// Daily limits
+const todayStr = new Date().toISOString().split('T')[0];
+const lastRequestDate = localStorage.getItem("chat_last_request_date");
+let remainingRequests = parseInt(localStorage.getItem("chat_remaining_requests"));
+
+if (isNaN(remainingRequests) || lastRequestDate !== todayStr) {
+    remainingRequests = 20; // Default limit
+    localStorage.setItem("chat_remaining_requests", 20);
+    localStorage.setItem("chat_last_request_date", todayStr);
+}
 
 // State:
 let isLoading = false;
+
+// Functions
+const updateLimitUI = (remaining) => {
+    const percentage = (remaining / 20) * 100;
+    
+    if (limitFill) {
+        limitFill.style.width = `${percentage}%`;
+        if (remaining <= 5) {
+            limitFill.classList.add("limit__fill--warning");
+        } else {
+            limitFill.classList.remove("limit__fill--warning");
+        }
+    }
+    if (limitText) {
+        limitText.textContent = `${remaining}/20 consultas restantes hoy`;
+    }
+    
+    if (remaining <= 0) {
+        messagesUser.disabled = true;
+        messagesSend.disabled = true;
+        messagesUser.placeholder = "Límite diario alcanzado";
+        messagesSend.textContent = "Límite";
+    }
+};
+
+// Initialize UI
+updateLimitUI(remainingRequests);
 
 // Backend response function:
 const responseBack = async() => {
@@ -77,6 +121,13 @@ const responseBack = async() => {
             throw new Error("Respuesta vacía del asistente");
         }
 
+        if (data.remainingCount !== undefined) {
+            remainingRequests = data.remainingCount;
+            localStorage.setItem("chat_remaining_requests", remainingRequests);
+            localStorage.setItem("chat_last_request_date", new Date().toISOString().split('T')[0]);
+            updateLimitUI(remainingRequests);
+        }
+
         // Remove messageResponse:
         if(loaderBubble.parentNode) {
             loaderBubble.remove();
@@ -104,15 +155,17 @@ const responseBack = async() => {
         // Error bubble
         const errorBubble = document.createElement("div");
         errorBubble.classList.add("messages__bot", "messages__bot--error");
-        errorBubble.textContent = "⚠️ Error: No se pudo obtener respuesta. Intenta de nuevo.";
+        errorBubble.textContent = "⚠️ " + (exception.message || "Error: No se pudo obtener respuesta. Intenta de nuevo.");
         messagesContent.appendChild(errorBubble);
         messagesContent.scrollTop = messagesContent.scrollHeight;
     } finally {
         isLoading = false;
-        messagesSend.disabled = false;
-        messagesSend.textContent = "Enviar";
-        messagesUser.disabled = false;
-        messagesUser.focus();
+        if (remainingRequests > 0) {
+            messagesSend.disabled = false;
+            messagesSend.textContent = "Enviar";
+            messagesUser.disabled = false;
+            messagesUser.focus();
+        }
     }
 }
 

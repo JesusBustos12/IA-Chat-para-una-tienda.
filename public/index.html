@@ -40,6 +40,10 @@
 
             <div class="chat__messages" role="log" aria-live="polite" aria-label="Historial de mensajes"></div>
 
+            <div class="chat__limit" aria-live="polite">
+                <div class="limit__bar"><div class="limit__fill" id="limitFill" style="width: 100%;"></div></div>
+                <span class="limit__text" id="limitText">20/20 consultas restantes hoy</span>
+            </div>
             <form class="chat__inputs" id="chatForm" autocomplete="off">
                 <label for="inputText" class="sr-only">Escribe tu mensaje</label>
                 <input type="text" id="inputText" placeholder="¿Cuál es tu consulta?" maxlength="500" aria-label="Mensaje para el asistente"/>
