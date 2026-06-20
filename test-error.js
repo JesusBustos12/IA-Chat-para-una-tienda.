@@ -1,16 +1,22 @@
-import { OpenAIError } from "openai/error.js";
-import OpenAI from "openai";
+// Native fetch
 
-const openai = new OpenAI({ apiKey: "fake" });
-
-try {
-  await openai.beta.threads.runs.create(undefined, { assistant_id: "fake" });
-} catch (e) {
-  console.log("TEST 1:", e.message);
+async function test() {
+    try {
+        const response = await fetch("http://localhost:3300/assistant/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: "test-user-123",
+                message: "Que vendes"
+            })
+        });
+        const data = await response.json();
+        console.log("Status:", response.status);
+        console.log("Response:", data);
+    } catch (e) {
+        console.error("Fetch failed:", e);
+    }
 }
-
-try {
-  await openai.beta.threads.runs.retrieve("thread_1", undefined);
-} catch (e) {
-  console.log("TEST 2:", e.message);
-}
+test();

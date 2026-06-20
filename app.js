@@ -4,6 +4,7 @@ import express from "express";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
+import mysql from "mysql2/promise";
 
 // Environment variable integrity:
 dotenv.config();
@@ -55,11 +56,60 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
 
-// Thread as an object:
-// Almacenamiento en memoria de threads por usuario.
-// NOTA: Los threads se pierden al reiniciar el servidor.
-// Para producción real, considerar persistencia con Redis o SQLite.
-const userThread = new Map();
+// Create DB connection pool
+let dbPool;
+try {
+    if (process.env.DATABASE_URL) {
+        // Remover ?ssl=true del string ya que mysql2 espera un objeto
+        const dbUrl = process.env.DATABASE_URL.replace("?ssl=true", "");
+        dbPool = mysql.createPool({
+            uri: dbUrl,
+            ssl: {
+                rejectUnauthorized: true
+            },
+            waitForConnections: true,
+            connectionLimit: 10,
+            queueLimit: 0
+        });
+        console.log("✅ Conexión a TiDB configurada.");
+    } else {
+        console.warn("⚠️ DATABASE_URL no definida. La búsqueda de productos fallará.");
+    }
+} catch (error) {
+    console.error("❌ Error al conectar con TiDB:", error.message);
+}
+
+// Almacenamiento en memoria de sesiones por usuario.
+// NOTA: En producción, considera persistencia con Redis o SQLite.
+const userSessions = new Map();
+
+// System prompt para la IA
+const systemPrompt = `Eres un asistente de ventas de una tienda virtual.
+Tu objetivo es ayudar a los clientes a encontrar productos, precios e información.
+Usa la herramienta 'buscar_productos' para consultar el inventario de la base de datos de TiDB cuando el usuario te pregunte por algún artículo, disponibilidad o precio.
+Si la herramienta devuelve resultados, úsalos para responder. Si no hay resultados, indica amablemente que no encontraste ese producto.
+Mantén tus respuestas amables, claras y precisas.`;
+
+// Definición de las herramientas (Tools)
+const tools = [
+    {
+        type: "function",
+        function: {
+            name: "buscar_productos",
+            description: "Busca productos en la base de datos de la tienda por nombre o marca.",
+            parameters: {
+                type: "object",
+                properties: {
+                    query: {
+                        type: "string",
+                        description: "El nombre, marca o término de búsqueda del producto (ej. 'refresco', 'agua', 'cerveza', 'Lala')."
+                    }
+                },
+                required: ["query"]
+            }
+        }
+    }
+];
 
 // Health check para servicios de hosting:
 app.get("/health", (req, res) => {
@@ -99,85 +149,92 @@ app.post("/assistant/chat", async(req, res) => {
 
     // Try and catch:
     try{
-
-        // Validar que las variables de entorno existan
-        if (!process.env.OPENAI_ASSISTANT_ID || process.env.OPENAI_ASSISTANT_ID.trim() === "") {
-            throw new Error("Error Crítico: OPENAI_ASSISTANT_ID no está definido en Vercel o está vacío.");
+        if (!dbPool) {
+            throw new Error("Error Crítico: No hay conexión a la base de datos.");
         }
 
-        // UserThread validation:
-        if(!userThread.has(id)){
-            const thread = await openai.beta.threads.create();
-            if (!thread || !thread.id) throw new Error("OpenAI no devolvió un thread válido.");
-            userThread.set(id, thread.id);
+        // Load or initialize user session
+        let sessionMessages = userSessions.get(id);
+        if (!sessionMessages) {
+            sessionMessages = [
+                { role: "system", content: systemPrompt }
+            ];
         }
 
-        const threadId = userThread.get(id);
-        if (!threadId || typeof threadId !== "string") {
-            throw new Error("El threadId generado es inválido: " + String(threadId));
+        // Append user message
+        sessionMessages.push({ role: "user", content: trimmedMessage });
+
+        // Maintain context window size (e.g. keep last 20 messages + system prompt)
+        if (sessionMessages.length > 21) {
+            sessionMessages = [sessionMessages[0], ...sessionMessages.slice(sessionMessages.length - 20)];
         }
 
-        // Add message to threadId:
-        await openai.beta.threads.messages.create(threadId, {
-            role: "user", content: trimmedMessage
+        log(`Llamando a OpenAI Chat Completions...`);
+        let response = await openai.chat.completions.create({
+            model: "gpt-4o-mini",
+            messages: sessionMessages,
+            temperature: 0.7,
+            top_p: 1,
+            tools: tools,
+            tool_choice: "auto"
         });
 
-        // Execution:
-        const run = await openai.beta.threads.runs.create(threadId, {
-            assistant_id: process.env.OPENAI_ASSISTANT_ID.trim()
-        });
+        let responseMessage = response.choices[0].message;
 
-        if (!run || !run.id) {
-            throw new Error("OpenAI no devolvió un run ID válido.");
+        // Si OpenAI decide llamar a una herramienta (buscar_productos)
+        if (responseMessage.tool_calls) {
+            log(`El asistente decidió llamar a una herramienta.`);
+            sessionMessages.push(responseMessage); // Add tool call to history
+
+            for (const toolCall of responseMessage.tool_calls) {
+                if (toolCall.function.name === "buscar_productos") {
+                    const args = JSON.parse(toolCall.function.arguments);
+                    const searchQuery = `%${args.query}%`;
+                    log(`Ejecutando query en TiDB para: ${args.query}`);
+
+                    try {
+                        const [rows] = await dbPool.execute(
+                            "SELECT nombre, marca, costo, unidades_de_stock FROM productos WHERE nombre LIKE ? OR marca LIKE ? LIMIT 10",
+                            [searchQuery, searchQuery]
+                        );
+                        
+                        const toolResultContent = rows.length > 0 ? JSON.stringify(rows) : "No se encontraron productos con ese término.";
+                        
+                        sessionMessages.push({
+                            tool_call_id: toolCall.id,
+                            role: "tool",
+                            name: "buscar_productos",
+                            content: toolResultContent
+                        });
+                    } catch (dbError) {
+                        console.error("Error en DB:", dbError);
+                        sessionMessages.push({
+                            tool_call_id: toolCall.id,
+                            role: "tool",
+                            name: "buscar_productos",
+                            content: "Hubo un error al consultar la base de datos."
+                        });
+                    }
+                }
+            }
+
+            // Llamar a OpenAI nuevamente con el resultado de la herramienta
+            log(`Llamando a OpenAI nuevamente con los resultados de TiDB...`);
+            response = await openai.chat.completions.create({
+                model: "gpt-4o-mini",
+                messages: sessionMessages,
+                temperature: 0.7,
+                top_p: 1
+            });
+            
+            responseMessage = response.choices[0].message;
         }
 
-        // Process executions:
-        let runStatus = run;
-        let attempts = 0;
-        const maxAttempts = 60;
+        // Add final response to session
+        sessionMessages.push({ role: "assistant", content: responseMessage.content });
+        userSessions.set(id, sessionMessages);
 
-        while(runStatus.status !== "completed" && attempts < maxAttempts){
-            // Resolve the promise:
-            await new Promise(resolve => setTimeout(resolve, 1000));
-
-            // Status of thread and run details:
-            runStatus = await openai.beta.threads.runs.retrieve(run.id, { thread_id: threadId });
-
-            // Add a new attempt:
-            attempts++;
-
-            log(`Intento de ejecución: ${attempts}. Estado: ${runStatus.status}`);
-        }
-
-        // Add error message to backend heap if execution fails to process:
-        if(runStatus.status !== "completed"){
-            throw new Error(`Error. Could not process execution: ${runStatus.status}`);
-        }
-
-        // List threadId:
-        const messages = await openai.beta.threads.messages.list(threadId);
-
-        log(`Total chat messages: ${messages.data.length}`);
-
-        // Filter assistant messages:
-        const messagesBot = messages.data.filter(msg => msg.role === "assistant");
-
-        log(`Total bot messages in chat: ${messagesBot.length}`);
-
-        if (messagesBot.length === 0) {
-            throw new Error("No se encontraron respuestas del asistente en este hilo.");
-        }
-
-        // Sort the messages:
-        const sortedMessages = messagesBot.sort((a, b) => b.created_at - a.created_at);
-        const latestMessage = sortedMessages[0];
-
-        if (!latestMessage.content || latestMessage.content.length === 0 || latestMessage.content[0].type !== "text") {
-            throw new Error("La respuesta más reciente del asistente no contiene texto.");
-        }
-
-        const messagesReply = latestMessage.content[0].text.value;
-
+        const messagesReply = responseMessage.content;
         log("Message: " + messagesReply);
 
         // Status 200:
@@ -186,15 +243,17 @@ app.post("/assistant/chat", async(req, res) => {
         });
 
     } catch(exception) {
-        // Aplanar el mensaje y el stack para que Vercel lo imprima en una sola línea
-        const fullError = (exception.stack || exception.message).replace(/\n/g, " | ");
-        console.error("[ERROR] /assistant/chat:", fullError);
+        console.error("================ ERROR EN EL BACKEND ================");
+        console.error(exception);
+        if (exception.response) {
+            console.error("Datos de la respuesta de OpenAI:", exception.response.data);
+        }
+        console.error("=====================================================");
 
-        // Distinguir errores de OpenAI de errores internos:
         const statusCode = exception.status || 500;
         const userMessage = statusCode === 429
             ? "El servicio está saturado. Intenta en unos minutos."
-            : "Error interno del servidor. Intenta de nuevo más tarde.";
+            : "Error interno del servidor. Intenta de nuevo más tarde. Detalles: " + exception.message;
 
         return res.status(statusCode).json({
             exception: userMessage,
