@@ -199,9 +199,29 @@ app.post("/assistant/chat", async(req, res) => {
 
                     try {
                         let rows = [];
-                        if (keywords.length > 0) {
+                        
+                        // Limpieza extrema de keywords para evitar frases largas o plurales
+                        let finalKeywords = [];
+                        keywords.forEach(kw => {
+                            // Si la IA manda frases (ej. "pasta de dientes"), la dividimos por espacios
+                            let words = kw.split(" ").map(w => w.trim().toLowerCase());
+                            words.forEach(w => {
+                                if (w.length > 3 && w.endsWith("s")) {
+                                    // Remover 's' simple (ej. huevos -> huevo)
+                                    finalKeywords.push(w.slice(0, -1));
+                                } else if (w.length > 4 && w.endsWith("es")) {
+                                    // Remover 'es' (ej. jabones -> jabon)
+                                    finalKeywords.push(w.slice(0, -2));
+                                }
+                                if (w.length > 2) { // Evitar palabras como "de", "la", "el"
+                                    finalKeywords.push(w);
+                                }
+                            });
+                        });
+                        
+                        if (finalKeywords.length > 0) {
                             // Construir múltiples LIKE para búsquedas probabilísticas (Case Insensitive usando LOWER)
-                            const safeKeywords = keywords.slice(0, 5); // Max 5 keywords para no sobrecargar
+                            const safeKeywords = finalKeywords.slice(0, 10); // Max 10 keywords procesadas
                             const likeClauses = safeKeywords.map(() => "LOWER(nombre) LIKE LOWER(?) OR LOWER(marca) LIKE LOWER(?)").join(" OR ");
                             const queryParams = [];
                             safeKeywords.forEach(kw => {
@@ -235,9 +255,10 @@ app.post("/assistant/chat", async(req, res) => {
 
             // Llamar a OpenAI nuevamente con el resultado de la herramienta
             log(`Llamando a OpenAI nuevamente con los resultados de TiDB...`);
-            response = await openai.chat.completions.create({
-                model: "gpt-4o-mini",
+            const response = await openai.chat.completions.create({
+                model: "gpt-4o",
                 messages: sessionMessages,
+                tools: tools,
                 temperature: 0.7,
                 top_p: 1
             });

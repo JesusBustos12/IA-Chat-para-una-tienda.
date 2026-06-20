@@ -11,8 +11,9 @@ async function testQuery() {
         ssl: { rejectUnauthorized: true }
     });
     
-    const keywords = ["huevo", "huevos"];
-    const likeClauses = keywords.map(() => "nombre LIKE ? OR marca LIKE ?").join(" OR ");
+    // Simulating app.js logic
+    const keywords = ["huevo", "huevos", "pasta"];
+    const likeClauses = keywords.map(() => "LOWER(nombre) LIKE LOWER(?) OR LOWER(marca) LIKE LOWER(?)").join(" OR ");
     const queryParams = [];
     keywords.forEach(kw => {
         queryParams.push(`%${kw}%`, `%${kw}%`);
@@ -23,7 +24,7 @@ async function testQuery() {
     console.log("Params:", queryParams);
     
     const [rows] = await connection.execute(sqlQuery, queryParams);
-    console.log("Resultados:", rows);
+    console.log("Resultados de la BD:", rows);
     await connection.end();
 }
 
