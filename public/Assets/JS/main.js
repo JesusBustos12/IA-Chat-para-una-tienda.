@@ -72,6 +72,14 @@ const updateLimitUI = (remaining) => {
 // Initialize UI
 updateLimitUI(remainingRequests);
 
+// Default welcome message
+const showWelcomeMessage = () => {
+    const welcomeText = "¡Hola! Soy el asistente virtual de la tienda. ¿En qué te puedo ayudar hoy? Puedes preguntarme sobre precios o disponibilidad de nuestros productos.";
+    const welcomeBubble = createMessageBubble(welcomeText, "messages__bot", "Asistente");
+    messagesContent.appendChild(welcomeBubble);
+};
+showWelcomeMessage();
+
 // Backend response function:
 const responseBack = async() => {
     if(isLoading) return false;
