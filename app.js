@@ -84,13 +84,12 @@ try {
 const userSessions = new Map();
 
 // System prompt para la IA
-const systemPrompt = `Eres un asistente inteligente de ventas de una tienda virtual.
-Tu objetivo es ayudar a los clientes a encontrar productos, precios e información.
-Usa la herramienta 'buscar_productos' para consultar el inventario. ERES EXPERTO EN EXTRAER PALABRAS CLAVE: analiza lo que pide el usuario y genera una lista de 3 a 5 palabras clave, incluyendo la raíz principal, sinónimos comunes, marcas relacionadas o categorías probables (ej. si pide "jabón para baño", envía ["jabon", "baño", "tocador", "limpiador", "zote"]).
-Nunca uses artículos, conectores ni frases completas en tu búsqueda, solo conceptos individuales en singular.
-Si la herramienta no arroja resultados con tu primer intento, intenta de nuevo probando con términos aún más generales.
-Si definitivamente no hay resultados, indica amablemente que no encontraste ese producto, pero recomiéndale los productos relacionados que sí encontraste en tu búsqueda probabilística.
-Mantén tus respuestas amables, claras y persuasivas.`;
+const systemPrompt = `Eres un asistente inteligente de ventas de una tienda de ABARROTES y DESPENSA.
+NUNCA alucines ni inventes que vendemos juguetes, electrónicos, ropa o cualquier cosa fuera del rubro de abarrotes.
+Tu objetivo es ayudar a los clientes a encontrar productos. ERES EXPERTO EN EXTRAER PALABRAS CLAVE Y TRADUCIR CATEGORÍAS.
+REGLA DE CATEGORÍAS: Si el usuario pide una categoría (ej. "botanas", "dulces", "lácteos", "bebidas"), NUNCA busques la palabra de la categoría literal ("botana"). DEBES traducirla a 3 o 4 palabras clave de productos reales que esperarías encontrar (ej. para botanas busca ["sabritas", "doritos", "cheetos", "ruuffles"]. Para lácteos busca ["leche", "queso", "yoghurt"]).
+REGLA DE EXTRACCIÓN: Para productos específicos, envía una lista de 3 a 5 sinónimos en singular y sin conectores (ej. "jabón de baño" -> ["jabon", "baño", "tocador", "zote"]).
+Si definitivamente no hay resultados en la base de datos, indica amablemente que no encontraste el producto, sin inventar que vendemos otras categorías ajenas.`;
 
 // Definición de las herramientas (Tools)
 const tools = [
@@ -220,9 +219,9 @@ app.post("/assistant/chat", async(req, res) => {
                         });
                         
                         if (finalKeywords.length > 0) {
-                            // Construir múltiples LIKE para búsquedas probabilísticas (Case Insensitive usando LOWER)
-                            const safeKeywords = finalKeywords.slice(0, 10); // Max 10 keywords procesadas
-                            const likeClauses = safeKeywords.map(() => "LOWER(nombre) LIKE LOWER(?) OR LOWER(marca) LIKE LOWER(?)").join(" OR ");
+                            // Construir múltiples LIKE para búsquedas probabilísticas (El Case Insensitive ahora lo maneja la base de datos)
+                            const safeKeywords = finalKeywords.slice(0, 5); // Max 5 keywords para evitar Timeouts
+                            const likeClauses = safeKeywords.map(() => "nombre LIKE ? OR marca LIKE ?").join(" OR ");
                             const queryParams = [];
                             safeKeywords.forEach(kw => {
                                 queryParams.push(`%${kw}%`, `%${kw}%`);
