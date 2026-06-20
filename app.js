@@ -200,9 +200,9 @@ app.post("/assistant/chat", async(req, res) => {
                     try {
                         let rows = [];
                         if (keywords.length > 0) {
-                            // Construir múltiples LIKE para búsquedas probabilísticas
+                            // Construir múltiples LIKE para búsquedas probabilísticas (Case Insensitive usando LOWER)
                             const safeKeywords = keywords.slice(0, 5); // Max 5 keywords para no sobrecargar
-                            const likeClauses = safeKeywords.map(() => "nombre LIKE ? OR marca LIKE ?").join(" OR ");
+                            const likeClauses = safeKeywords.map(() => "LOWER(nombre) LIKE LOWER(?) OR LOWER(marca) LIKE LOWER(?)").join(" OR ");
                             const queryParams = [];
                             safeKeywords.forEach(kw => {
                                 queryParams.push(`%${kw}%`, `%${kw}%`);
