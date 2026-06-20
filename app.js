@@ -192,9 +192,22 @@ app.post("/assistant/chat", async(req, res) => {
         // Append user message
         sessionMessages.push({ role: "user", content: trimmedMessage });
 
-        // Maintain context window size (e.g. keep last 20 messages + system prompt)
-        if (sessionMessages.length > 21) {
-            sessionMessages = [sessionMessages[0], ...sessionMessages.slice(sessionMessages.length - 20)];
+        // Maintain context window size safely
+        // Eliminamos los mensajes más antiguos asegurándonos de no romper pares de tool_calls y tool
+        while (sessionMessages.length > 21) {
+            const removed = sessionMessages.splice(1, 1)[0];
+            
+            // Si el mensaje eliminado llamó a una herramienta, eliminamos también su respuesta 'tool'
+            if (removed.role === "assistant" && removed.tool_calls) {
+                while (sessionMessages.length > 1 && sessionMessages[1].role === "tool") {
+                    sessionMessages.splice(1, 1);
+                }
+            }
+            
+            // Si por alguna razón queda un mensaje 'tool' huérfano en la posición 1, también lo eliminamos
+            while (sessionMessages.length > 1 && sessionMessages[1].role === "tool") {
+                sessionMessages.splice(1, 1);
+            }
         }
 
         log(`Llamando a OpenAI Chat Completions...`);
