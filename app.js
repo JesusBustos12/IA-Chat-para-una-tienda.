@@ -86,9 +86,10 @@ const userSessions = new Map();
 // System prompt para la IA
 const systemPrompt = `Eres un asistente inteligente de ventas de una tienda virtual.
 Tu objetivo es ayudar a los clientes a encontrar productos, precios e información.
-Usa la herramienta 'buscar_productos' para consultar el inventario. ERES EXPERTO EN EXTRAER PALABRAS CLAVE: si un cliente te pide "jabón para bañarse", debes extraer solo "jabon" para la búsqueda. Si pide "pasta de dientes", extrae "pasta" o "dental". Si pide plurales ("papas"), usa el singular ("papa"). Nunca uses artículos, conectores ni frases completas para buscar en la base de datos, porque la búsqueda literal fallará.
-Si la herramienta no arroja resultados con tu primer intento, no te rindas inmediatamente: vuelve a usar la herramienta probando con un sinónimo o una palabra raíz más general.
-Si definitivamente no hay resultados después de intentarlo, indica amablemente que no encontraste ese producto.
+Usa la herramienta 'buscar_productos' para consultar el inventario. ERES EXPERTO EN EXTRAER PALABRAS CLAVE: analiza lo que pide el usuario y genera una lista de 3 a 5 palabras clave, incluyendo la raíz principal, sinónimos comunes, marcas relacionadas o categorías probables (ej. si pide "jabón para baño", envía ["jabon", "baño", "tocador", "limpiador", "zote"]).
+Nunca uses artículos, conectores ni frases completas en tu búsqueda, solo conceptos individuales en singular.
+Si la herramienta no arroja resultados con tu primer intento, intenta de nuevo probando con términos aún más generales.
+Si definitivamente no hay resultados, indica amablemente que no encontraste ese producto, pero recomiéndale los productos relacionados que sí encontraste en tu búsqueda probabilística.
 Mantén tus respuestas amables, claras y persuasivas.`;
 
 // Definición de las herramientas (Tools)
@@ -97,16 +98,19 @@ const tools = [
         type: "function",
         function: {
             name: "buscar_productos",
-            description: "Realiza una consulta a la base de datos para buscar artículos por nombre o marca.",
+            description: "Realiza una consulta a la base de datos para buscar artículos usando múltiples palabras clave (probabilidad por sinónimos).",
             parameters: {
                 type: "object",
                 properties: {
-                    query: {
-                        type: "string",
-                        description: "UNA ÚNICA PALABRA CLAVE en singular y preferentemente sin acentos que represente el producto principal (ej. 'jabon', 'pasta', 'refresco', 'leche'). No envíes frases como 'jabon de baño'."
+                    keywords: {
+                        type: "array",
+                        items: {
+                            type: "string"
+                        },
+                        description: "Arreglo de palabras clave individuales en singular y sin acentos (ej. ['jabon', 'baño', 'zote', 'tocador'])."
                     }
                 },
-                required: ["query"]
+                required: ["keywords"]
             }
         }
     }
@@ -190,16 +194,26 @@ app.post("/assistant/chat", async(req, res) => {
             for (const toolCall of responseMessage.tool_calls) {
                 if (toolCall.function.name === "buscar_productos") {
                     const args = JSON.parse(toolCall.function.arguments);
-                    const searchQuery = `%${args.query}%`;
-                    log(`Ejecutando query en TiDB para: ${args.query}`);
+                    const keywords = args.keywords || [];
+                    log(`Ejecutando query en TiDB para keywords: ${keywords.join(", ")}`);
 
                     try {
-                        const [rows] = await dbPool.execute(
-                            "SELECT nombre, marca, costo, unidades_de_stock FROM productos WHERE nombre LIKE ? OR marca LIKE ? LIMIT 10",
-                            [searchQuery, searchQuery]
-                        );
+                        let rows = [];
+                        if (keywords.length > 0) {
+                            // Construir múltiples LIKE para búsquedas probabilísticas
+                            const safeKeywords = keywords.slice(0, 5); // Max 5 keywords para no sobrecargar
+                            const likeClauses = safeKeywords.map(() => "nombre LIKE ? OR marca LIKE ?").join(" OR ");
+                            const queryParams = [];
+                            safeKeywords.forEach(kw => {
+                                queryParams.push(`%${kw}%`, `%${kw}%`);
+                            });
+
+                            const sqlQuery = `SELECT nombre, marca, costo, unidades_de_stock FROM productos WHERE ${likeClauses} LIMIT 20`;
+                            const [result] = await dbPool.execute(sqlQuery, queryParams);
+                            rows = result;
+                        }
                         
-                        const toolResultContent = rows.length > 0 ? JSON.stringify(rows) : "No se encontraron productos con ese término.";
+                        const toolResultContent = rows.length > 0 ? JSON.stringify(rows) : "No se encontraron productos con esos términos.";
                         
                         sessionMessages.push({
                             tool_call_id: toolCall.id,
