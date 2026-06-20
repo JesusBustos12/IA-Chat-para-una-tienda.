@@ -84,11 +84,12 @@ try {
 const userSessions = new Map();
 
 // System prompt para la IA
-const systemPrompt = `Eres un asistente de ventas de una tienda virtual.
+const systemPrompt = `Eres un asistente inteligente de ventas de una tienda virtual.
 Tu objetivo es ayudar a los clientes a encontrar productos, precios e información.
-Usa la herramienta 'buscar_productos' para consultar el inventario de la base de datos de TiDB cuando el usuario te pregunte por algún artículo, disponibilidad o precio.
-Si la herramienta devuelve resultados, úsalos para responder. Si no hay resultados, indica amablemente que no encontraste ese producto.
-Mantén tus respuestas amables, claras y precisas.`;
+Usa la herramienta 'buscar_productos' para consultar el inventario. ERES EXPERTO EN EXTRAER PALABRAS CLAVE: si un cliente te pide "jabón para bañarse", debes extraer solo "jabon" para la búsqueda. Si pide "pasta de dientes", extrae "pasta" o "dental". Si pide plurales ("papas"), usa el singular ("papa"). Nunca uses artículos, conectores ni frases completas para buscar en la base de datos, porque la búsqueda literal fallará.
+Si la herramienta no arroja resultados con tu primer intento, no te rindas inmediatamente: vuelve a usar la herramienta probando con un sinónimo o una palabra raíz más general.
+Si definitivamente no hay resultados después de intentarlo, indica amablemente que no encontraste ese producto.
+Mantén tus respuestas amables, claras y persuasivas.`;
 
 // Definición de las herramientas (Tools)
 const tools = [
@@ -96,13 +97,13 @@ const tools = [
         type: "function",
         function: {
             name: "buscar_productos",
-            description: "Busca productos en la base de datos de la tienda por nombre o marca.",
+            description: "Realiza una consulta a la base de datos para buscar artículos por nombre o marca.",
             parameters: {
                 type: "object",
                 properties: {
                     query: {
                         type: "string",
-                        description: "El nombre, marca o término de búsqueda del producto (ej. 'refresco', 'agua', 'cerveza', 'Lala')."
+                        description: "UNA ÚNICA PALABRA CLAVE en singular y preferentemente sin acentos que represente el producto principal (ej. 'jabon', 'pasta', 'refresco', 'leche'). No envíes frases como 'jabon de baño'."
                     }
                 },
                 required: ["query"]
