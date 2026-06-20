@@ -189,7 +189,8 @@ app.post("/assistant/chat", async(req, res) => {
     }
 
     const todayStr = new Date().toISOString().split('T')[0];
-    let dailyData = userDailyLimits.get(id);
+    const clientIP = req.ip || "unknown-ip";
+    let dailyData = userDailyLimits.get(clientIP);
     
     if (!dailyData || dailyData.date !== todayStr) {
         dailyData = { date: todayStr, count: 0 };
@@ -342,7 +343,7 @@ app.post("/assistant/chat", async(req, res) => {
 
         // Registrar la petición exitosa y calcular restantes
         dailyData.count++;
-        userDailyLimits.set(id, dailyData);
+        userDailyLimits.set(clientIP, dailyData);
         const remainingCount = 20 - dailyData.count;
 
         // Status 200:
