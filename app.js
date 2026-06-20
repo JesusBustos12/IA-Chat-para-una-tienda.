@@ -10,7 +10,8 @@ import mysql from "mysql2/promise";
 dotenv.config();
 
 const isDev = process.env.NODE_ENV !== "production";
-const log = (...args) => { if(isDev) console.log("[DEV]", ...args); };
+// Forzar impresión de logs siempre, para verlos en el Dashboard de Vercel
+const log = (...args) => { console.log("[INFO]", ...args); };
 
 // Create and configure the server:
 const app = express();
@@ -38,6 +39,20 @@ app.use(express.urlencoded({
 }));
 
 app.use("/assistant/chat", apiLimiter);
+
+// Endpoint de Depuración Directa a la BD
+app.get("/debug-db", async (req, res) => {
+    const q = req.query.q;
+    if (!q) return res.status(400).json({ error: "Falta el parámetro q. Ejemplo: /debug-db?q=huevo" });
+    try {
+        const query = `SELECT nombre, marca, costo, unidades_de_stock FROM productos WHERE LOWER(nombre) LIKE LOWER(?) OR LOWER(marca) LIKE LOWER(?) LIMIT 20`;
+        const params = [`%${q}%`, `%${q}%`];
+        const [rows] = await dbPool.execute(query, params);
+        res.json({ keyword_searched: q, total_results: rows.length, results: rows });
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
 
 import path from "path";
 
@@ -228,9 +243,9 @@ app.post("/assistant/chat", async(req, res) => {
                         });
                         
                         if (finalKeywords.length > 0) {
-                            // Construir múltiples LIKE para búsquedas probabilísticas (El Case Insensitive ahora lo maneja la base de datos)
-                            const safeKeywords = finalKeywords.slice(0, 5); // Max 5 keywords para evitar Timeouts
-                            const likeClauses = safeKeywords.map(() => "nombre LIKE ? OR marca LIKE ?").join(" OR ");
+                            // Construir múltiples LIKE restaurando el LOWER para máxima seguridad
+                            const safeKeywords = finalKeywords.slice(0, 12); // Aumentado a 12 para soportar listas gigantes
+                            const likeClauses = safeKeywords.map(() => "LOWER(nombre) LIKE LOWER(?) OR LOWER(marca) LIKE LOWER(?)").join(" OR ");
                             const queryParams = [];
                             safeKeywords.forEach(kw => {
                                 queryParams.push(`%${kw}%`, `%${kw}%`);
