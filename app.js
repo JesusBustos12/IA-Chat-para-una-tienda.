@@ -159,6 +159,29 @@ app.get("/health", (req, res) => {
     });
 });
 
+// Endpoint para obtener el límite de peticiones actual de la IP
+app.get("/assistant/limits", async (req, res) => {
+    const todayStr = new Date().toISOString().split('T')[0];
+    const clientIP = req.ip || "unknown-ip";
+    
+    try {
+        if (!dbPool) return res.status(200).json({ remainingCount: 20 });
+        
+        let requestCount = 0;
+        const [limitRows] = await dbPool.execute('SELECT last_request_date, request_count FROM rate_limits WHERE ip = ?', [clientIP]);
+        
+        if (limitRows.length > 0) {
+            const dbData = limitRows[0];
+            if (dbData.last_request_date === todayStr) {
+                requestCount = dbData.request_count;
+            }
+        }
+        return res.status(200).json({ remainingCount: Math.max(0, 20 - requestCount) });
+    } catch (e) {
+        return res.status(200).json({ remainingCount: 20 });
+    }
+});
+
 // Post request:
 app.post("/assistant/chat", async(req, res) => {
 

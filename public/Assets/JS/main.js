@@ -69,8 +69,25 @@ const updateLimitUI = (remaining) => {
     }
 };
 
-// Initialize UI
+// Initialize UI optimistically from LocalStorage
 updateLimitUI(remainingRequests);
+
+// Sincronizar límite real con la base de datos (Backend)
+const syncLimits = async () => {
+    try {
+        const response = await fetch("/assistant/limits");
+        const data = await response.json();
+        if (data.remainingCount !== undefined) {
+            remainingRequests = data.remainingCount;
+            localStorage.setItem("chat_remaining_requests", remainingRequests);
+            localStorage.setItem("chat_last_request_date", new Date().toISOString().split('T')[0]);
+            updateLimitUI(remainingRequests);
+        }
+    } catch (error) {
+        console.error("Error al sincronizar límites de la DB:", error);
+    }
+};
+syncLimits();
 
 // Default welcome message
 const showWelcomeMessage = () => {
