@@ -109,7 +109,6 @@ let cachedTotalProducts = "múltiples";
 // Almacenamiento en memoria de sesiones por usuario.
 // NOTA: En producción, considera persistencia con Redis o SQLite.
 const userSessions = new Map();
-const userDailyLimits = new Map();
 
 // System prompt template para la IA
 const systemPromptTemplate = `Eres el asistente virtual amable de una TIENDA DE ABARROTES MEXICANA.
@@ -190,22 +189,31 @@ app.post("/assistant/chat", async(req, res) => {
 
     const todayStr = new Date().toISOString().split('T')[0];
     const clientIP = req.ip || "unknown-ip";
-    let dailyData = userDailyLimits.get(clientIP);
-    
-    if (!dailyData || dailyData.date !== todayStr) {
-        dailyData = { date: todayStr, count: 0 };
-    }
-    
-    if (dailyData.count >= 20) {
-        return res.status(429).json({
-            exception: "Has alcanzado el límite de 20 consultas por día. Regresa mañana para seguir platicando."
-        });
-    }
 
     // Try and catch:
     try{
         if (!dbPool) {
             throw new Error("Error Crítico: No hay conexión a la base de datos.");
+        }
+
+        // Consultar el límite en TiDB
+        let requestCount = 0;
+        const [limitRows] = await dbPool.execute('SELECT last_request_date, request_count FROM rate_limits WHERE ip = ?', [clientIP]);
+        
+        if (limitRows.length > 0) {
+            const dbData = limitRows[0];
+            if (dbData.last_request_date === todayStr) {
+                requestCount = dbData.request_count;
+            } else {
+                // Nuevo día
+                requestCount = 0;
+            }
+        }
+
+        if (requestCount >= 20) {
+            return res.status(429).json({
+                exception: "Has alcanzado el límite de 20 consultas por día. Regresa mañana para seguir platicando."
+            });
         }
 
         // Load or initialize user session
@@ -342,9 +350,19 @@ app.post("/assistant/chat", async(req, res) => {
         log("Message: " + messagesReply);
 
         // Registrar la petición exitosa y calcular restantes
-        dailyData.count++;
-        userDailyLimits.set(clientIP, dailyData);
-        const remainingCount = 20 - dailyData.count;
+        requestCount++;
+        
+        // Guardar o actualizar en TiDB
+        await dbPool.execute(
+            `INSERT INTO rate_limits (ip, last_request_date, request_count) 
+             VALUES (?, ?, 1) 
+             ON DUPLICATE KEY UPDATE 
+             request_count = IF(last_request_date = ?, request_count + 1, 1),
+             last_request_date = ?`,
+            [clientIP, todayStr, todayStr, todayStr]
+        );
+        
+        const remainingCount = 20 - requestCount;
 
         // Status 200:
         return res.status(200).json({
