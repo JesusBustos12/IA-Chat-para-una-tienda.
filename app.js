@@ -355,7 +355,7 @@ app.post("/assistant/chat", async(req, res) => {
             // Llamar a OpenAI nuevamente con el resultado de la herramienta
             log(`Llamando a OpenAI nuevamente con los resultados de TiDB...`);
             const response = await openai.chat.completions.create({
-                model: "gpt-4o",
+                model: "gpt-4o-mini",
                 messages: sessionMessages,
                 tools: tools,
                 temperature: 0.7,
